@@ -10,17 +10,18 @@ const SPRINT_MAX_ENERGY: float = 4.0
 const SPRINT_RECHARGE_SPEED: float = 0.8
 const SPRINT_RECHARGE_SPEED_HARD: float = 0.5
 const JUMP: float = 5.0
+const GRAV_SCALE: float = 2.0
 const JUMP_QUEUE_FRAMES: int = 8
 const ACCEL: float = 0.2
 const ACCEL_AIR: float = 0.05
 const DEFAULT_FOV: float = 75.0
-const SCOPE_FOV: float = 45.0
-const SCOPE_LOOK_SLOW: float = 0.5
 const FOOTSTEP_TIME: float = 0.35
 const FOOTSTEP_MIN_VOLUME: float = -7.5
 const FOOTSTEP_MAX_VOLUME: float = 0.0
 const FOOTSTEP_MIN_SOUND_STRENGTH: float = 0.1
 const FOOTSTEP_MAX_SOUND_STRENGTH: float = 0.7
+const PISTOL_IMPACT = preload("uid://d0qsi4tjujcfy")
+
 
 signal jumped
 signal landed
@@ -30,7 +31,19 @@ signal sprint_exhausted
 signal sprint_recharged
 signal controller_input_changed(using_controller: bool)
 
+
 enum MovementState {ON_FLOOR, ASCENDING, FALLING}
+
+
+@export var current_gun: Gun:
+	set(value):
+		current_gun = value
+		if current_gun:
+			current_gun.fired.connect(_on_gun_fired)
+			current_gun.reload_started.connect(_on_gun_reload_started)
+			current_gun.reload_finished.connect(_on_gun_reload_finished)
+			current_gun.need_ammo.connect(_on_gun_need_ammo)
+			current_gun.last_shot.connect(_on_gun_last_shot)
 
 
 var current_movement_state: MovementState = MovementState.ON_FLOOR:
@@ -70,22 +83,30 @@ var controller_input := false:
 			controller_input = value
 			controller_input_changed.emit(controller_input)
 var jump_queue: int = 0
+var aim_sens: float = 1.0
 
 
 @onready var audio_stream_player_3d_footstep: AudioStreamPlayer3D = $AudioStreamPlayer3DFootstep
 @onready var cam_h: Node3D = $CamH
 @onready var camera_3d: Camera3D = $CamH/Camera3D
+@onready var gun_mount: Node3D = $CamH/Camera3D/GunMount
+@onready var gun_spot_default: Node3D = $CamH/Camera3D/GunSpotDefault
+@onready var gun_spot_scope: Node3D = $CamH/Camera3D/GunSpotScope
+@onready var ray_cast_3d_gun: RayCast3D = $CamH/Camera3D/RayCast3DGun
 
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	var scene_root = get_tree().root.get_child(0)
+	if scene_root.is_class("Control"):
+		var control_root: Control = scene_root
+		control_root.gui_input.connect(_on_control_gui_input)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
-			var slow_factor: float = 1.0
-			rot_h -= event.screen_relative.x * SENS * slow_factor
-			rot_v -= event.screen_relative.y * SENS * slow_factor
+			rot_h -= event.screen_relative.x * SENS * aim_sens
+			rot_v -= event.screen_relative.y * SENS * aim_sens
 	elif event is InputEventMouseButton:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -93,6 +114,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		controller_input = true
 	else:
 		controller_input = false
+
+
+func _on_control_gui_input(event: InputEvent) -> void:
+	_unhandled_input(event)
 
 
 func footstep(step_speed: float) -> void:
@@ -103,6 +128,27 @@ func footstep(step_speed: float) -> void:
 														FOOTSTEP_MIN_VOLUME,
 														FOOTSTEP_MAX_VOLUME)
 	audio_stream_player_3d_footstep.pitch_scale = randfn(1.0, 0.05)
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("scope"):
+		gun_mount.position = lerp(gun_mount.position, gun_spot_scope.position, 0.4)
+		if current_gun:
+			camera_3d.fov = lerpf(camera_3d.fov, current_gun.scope_fov, 0.4)
+			current_gun.scoped = true
+		aim_sens = lerpf(aim_sens, camera_3d.fov / DEFAULT_FOV, 0.4)
+	else:
+		gun_mount.position = lerp(gun_mount.position, gun_spot_default.position, 0.4)
+		camera_3d.fov = lerpf(camera_3d.fov, DEFAULT_FOV, 0.4)
+		aim_sens = lerpf(aim_sens, 1.0, 0.4)
+		if current_gun:
+			current_gun.scoped = false
+	
+	if current_gun:
+		if Input.is_action_just_pressed("shoot"):
+			current_gun.fire()
+		if Input.is_action_just_pressed("reload"):
+			current_gun.reload(10)
 
 
 func _physics_process(delta: float) -> void:
@@ -137,8 +183,8 @@ func _physics_process(delta: float) -> void:
 	if controller_input:
 		var slow_factor: float = 1.0
 		var y_invert := 1.0
-		rot_h -= joy_look.x * slow_factor * SENS_JOY
-		rot_v += joy_look.y * slow_factor * SENS_JOY
+		rot_h -= joy_look.x * slow_factor * SENS_JOY * aim_sens
+		rot_v += joy_look.y * slow_factor * SENS_JOY * aim_sens
 
 	cam_h.rotation.y = rot_h
 	camera_3d.rotation.x = rot_v
@@ -182,7 +228,7 @@ func _physics_process(delta: float) -> void:
 						ACCEL_AIR
 						)
 
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * delta * GRAV_SCALE
 		if Input.is_action_just_pressed("jump"):
 			jump_queue = JUMP_QUEUE_FRAMES
 	elif current_movement_state == MovementState.FALLING:
@@ -200,7 +246,7 @@ func _physics_process(delta: float) -> void:
 						ACCEL_AIR
 						)
 
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * delta * GRAV_SCALE
 		if Input.is_action_just_pressed("jump"):
 			jump_queue = JUMP_QUEUE_FRAMES
 
@@ -219,3 +265,39 @@ func _physics_process(delta: float) -> void:
 		current_movement_state = MovementState.ASCENDING
 	else:
 		current_movement_state = MovementState.FALLING
+
+
+func _on_gun_fired() -> void:
+	if ray_cast_3d_gun.is_colliding():
+		var new_impact: GPUParticles3D = PISTOL_IMPACT.instantiate()
+		get_parent().add_child(new_impact)
+		var pos := ray_cast_3d_gun.get_collision_point()
+		var norm := ray_cast_3d_gun.get_collision_normal()
+		var rc_dir := ray_cast_3d_gun.global_basis.z
+		var oblique: float = maxf(rc_dir.dot(norm), 0.0)
+		var refl := -rc_dir.reflect(norm)
+		new_impact.look_at_from_position(
+								pos,
+								pos + (norm.slerp(-refl, 1.0 - oblique))
+								)
+		var p_mat: ParticleProcessMaterial = new_impact.process_material
+		p_mat.spread = oblique * 90.0
+		new_impact.speed_scale = 1.0 + (1.0 - oblique)
+	print("fired")
+
+
+func _on_gun_reload_started() -> void:
+	print("reloading")
+
+
+func _on_gun_reload_finished() -> void:
+	print("reload finished")
+
+
+func _on_gun_need_ammo() -> void:
+	current_gun.reload(10)
+	print("need ammo")
+
+
+func _on_gun_last_shot() -> void:
+	print("clip empty")

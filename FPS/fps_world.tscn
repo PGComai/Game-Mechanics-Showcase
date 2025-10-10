@@ -1,8 +1,8 @@
 [gd_scene load_steps=82 format=3 uid="uid://byljlg5pi75nk"]
 
-[ext_resource type="Script" uid="uid://x63uix0qg2ji" path="res://ProceduralTools/platform.gd" id="1_uyxqw"]
-[ext_resource type="PackedScene" uid="uid://6nttfq8w3f5a" path="res://FPS/player.tscn" id="2_isvcc"]
-[ext_resource type="Script" uid="uid://bp0kn5qdeul8d" path="res://ProceduralTools/stair_master.gd" id="3_1qv2m"]
+[ext_resource type="PackedScene" uid="uid://6nttfq8w3f5a" path="res://FPS/player.tscn" id="1_fwpn7"]
+[ext_resource type="Script" uid="uid://bp0kn5qdeul8d" path="res://ProceduralTools/stair_master.gd" id="2_2ilpk"]
+[ext_resource type="Script" uid="uid://x63uix0qg2ji" path="res://ProceduralTools/platform.gd" id="3_7l31x"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1qv2m"]
 vertices = PackedVector3Array(-9, 21.75, -29.25, 9.5, 21.75, -29, 9.5, 21.75, -29.5, -9.5, 21.75, -29.5, 39.5, 21.75, 10.5, 39.5, 21.75, -10.5, -0.25, 21.75, -10.5, -39.5, 21.75, 10.5, -9.25, 21.75, -11, -9.75, 21.75, -10.75, -39.5, 21.75, -10.75, -8.25, 6.5, -17.75, -2.5, 6.5, -17.5, -2.5, 6.5, -19, -1.75, 6.5, -19.25, -1.75, 6.5, -28.25, -8.25, 6.5, -28.25, 2.5, 6.5, -19, 2.5, 6.5, -17, 8.5, 6.5, -17, -1.25, 1.25, -10.5, 1.5, 1.25, -10.25, 1.5, 6.5, -19, -1.25, 6.5, -19, 8.5, 6.5, -28.25, -8.25, 6.5, -10, -3.5, 6.5, -9.75, -3.25, 6.5, -10.5, -2.5, 6.5, -10.5, 3.5, 6.5, -10.5, 3.75, 6.5, -9.75, 8.5, 6.5, -10, 2.5, 6.5, -10.5, -1.25, 1, -8.75, 1.75, 1, -8.25, 8.5, 1, 8.5, 8.5, 1, -8.25, -1.75, 1, -8.25, -8.25, 1, 8.5, -8.25, 1, -8.25, -3.5, 6.5, -8.5, -8.5, 6.5, -9.25, -8.5, 6.5, -4.5, -8.25, 6.5, -4, -3, 6.5, -8.25, -10.25, 6.75, -9.25, -10.25, 6.75, -4.5, 8.75, 6.5, -9.25, 3.25, 6.5, -8.25, 8.5, 6.5, -4.25, 10.5, 7, -4.5, 10.5, 7, -9.25, -8.25, 6.5, 9.5, 8.5, 6.5, 9.5, 2.5, 14, -3.75, 2.75, 14, -9.5, -2.5, 14, -9.5, -2.5, 14, -3.75, -4.75, 14, -3.5, -4.75, 14, 9.5, 4.75, 14, 9.5, 4.75, 14, -3.5, -19, 12, -4.5, -17.5, 11.25, -4.5, -17.75, 11.25, -9.25, -38.25, 12.25, -9.25, -20.678572, 12.25, -9.25, -17, 12.25, 9.5, -17, 12.25, -3.5, -19, 12.25, -3.5, -38.25, 12.25, 9.5, 17.5, 11.25, -4.5, 17.75, 11.25, -9.25, 19, 12, -4.5, 38.5, 12.25, -9.25, 20.714287, 12.25, -9.25, 19, 12.25, -3.5, 17, 12.25, -3.5, 17, 12.25, 9.5, 38.5, 12.25, 9.5, -10.194445, 12.25, 9.5, -10.194445, 12.25, -3.5, 10.194443, 12.25, 9.5, 10.194443, 12.25, -3.5)
@@ -76,190 +76,190 @@ albedo_texture = SubResource("GradientTexture2D_1qv2m")
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1qv2m"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_fwpn7"]
 size = Vector3(20, 1, 20)
 
-[sub_resource type="BoxMesh" id="BoxMesh_swwd3"]
+[sub_resource type="BoxMesh" id="BoxMesh_2ilpk"]
 size = Vector3(20, 1, 20)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_eqts1"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_7l31x"]
 size = Vector3(1, 4.7, 20)
 
-[sub_resource type="BoxMesh" id="BoxMesh_6tdbn"]
+[sub_resource type="BoxMesh" id="BoxMesh_gn3th"]
 size = Vector3(1, 4.7, 20)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i71pe"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qw3d"]
 size = Vector3(1, 4.7, 20)
 
-[sub_resource type="BoxMesh" id="BoxMesh_k3s4b"]
+[sub_resource type="BoxMesh" id="BoxMesh_ibpc2"]
 size = Vector3(1, 4.7, 20)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_cgv0e"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_cx0jw"]
 size = Vector3(1, 16, 19)
 
-[sub_resource type="BoxMesh" id="BoxMesh_xf6uy"]
+[sub_resource type="BoxMesh" id="BoxMesh_sbnd3"]
 size = Vector3(1, 16, 19)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_a04jl"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ld01p"]
 size = Vector3(1, 16, 19)
 
-[sub_resource type="BoxMesh" id="BoxMesh_u6pr5"]
+[sub_resource type="BoxMesh" id="BoxMesh_1grer"]
 size = Vector3(1, 16, 19)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_c1px2"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_iq1b2"]
 size = Vector3(1, 16, 18)
 
-[sub_resource type="BoxMesh" id="BoxMesh_7myup"]
+[sub_resource type="BoxMesh" id="BoxMesh_gkncr"]
 size = Vector3(1, 16, 18)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_h6f2k"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_283g4"]
 size = Vector3(1, 4.7, 14)
 
-[sub_resource type="BoxMesh" id="BoxMesh_mvaua"]
+[sub_resource type="BoxMesh" id="BoxMesh_tqo0t"]
 size = Vector3(1, 4.7, 14)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yib6y"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_v1ey5"]
 size = Vector3(1, 4.7, 14)
 
-[sub_resource type="BoxMesh" id="BoxMesh_8synj"]
+[sub_resource type="BoxMesh" id="BoxMesh_gc1sp"]
 size = Vector3(1, 4.7, 14)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qgjyw"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_xdsky"]
 size = Vector3(1, 4.7, 14)
 
-[sub_resource type="BoxMesh" id="BoxMesh_31w1t"]
+[sub_resource type="BoxMesh" id="BoxMesh_py0wt"]
 size = Vector3(1, 4.7, 14)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_go1y7"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_5d644"]
 size = Vector3(1, 15, 31)
 
-[sub_resource type="BoxMesh" id="BoxMesh_ktdmy"]
+[sub_resource type="BoxMesh" id="BoxMesh_uw6lp"]
 size = Vector3(1, 15, 31)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_rtwkg"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_i2eg7"]
 size = Vector3(1, 15, 31)
 
-[sub_resource type="BoxMesh" id="BoxMesh_epn6a"]
+[sub_resource type="BoxMesh" id="BoxMesh_8056p"]
 size = Vector3(1, 15, 31)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_835pv"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_eb2ca"]
 size = Vector3(1, 15, 80)
 
-[sub_resource type="BoxMesh" id="BoxMesh_5dgk0"]
+[sub_resource type="BoxMesh" id="BoxMesh_7w7mt"]
 size = Vector3(1, 15, 80)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_wiicj"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_w3cas"]
 size = Vector3(22, 1, 80)
 
-[sub_resource type="BoxMesh" id="BoxMesh_4ourw"]
+[sub_resource type="BoxMesh" id="BoxMesh_de8p6"]
 size = Vector3(22, 1, 80)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_r5q8s"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_1cj0n"]
 size = Vector3(10, 1, 14)
 
-[sub_resource type="BoxMesh" id="BoxMesh_ltmpb"]
+[sub_resource type="BoxMesh" id="BoxMesh_ikhqo"]
 size = Vector3(10, 1, 14)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_qa36o"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_t1qlh"]
 size = Vector3(6, 1, 20)
 
-[sub_resource type="BoxMesh" id="BoxMesh_jcr5o"]
+[sub_resource type="BoxMesh" id="BoxMesh_7ylt8"]
 size = Vector3(6, 1, 20)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_w5451"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_xacpg"]
 size = Vector3(6, 6.5, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_6da4h"]
+[sub_resource type="BoxMesh" id="BoxMesh_whri8"]
 size = Vector3(6, 6.5, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_r3tao"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_2w1uy"]
 size = Vector3(10, 1, 14)
 
-[sub_resource type="BoxMesh" id="BoxMesh_3uxmb"]
+[sub_resource type="BoxMesh" id="BoxMesh_rgxdr"]
 size = Vector3(10, 1, 14)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kj453"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ynybk"]
 size = Vector3(1, 4.7, 14)
 
-[sub_resource type="BoxMesh" id="BoxMesh_vfjsr"]
+[sub_resource type="BoxMesh" id="BoxMesh_ek5nm"]
 size = Vector3(1, 4.7, 14)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0bpxk"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_84m23"]
 size = Vector3(1, 4.7, 18)
 
-[sub_resource type="BoxMesh" id="BoxMesh_3n357"]
+[sub_resource type="BoxMesh" id="BoxMesh_4ifpr"]
 size = Vector3(1, 4.7, 18)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_al8e7"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ebwe7"]
 size = Vector3(1, 4.7, 7)
 
-[sub_resource type="BoxMesh" id="BoxMesh_jsjpg"]
+[sub_resource type="BoxMesh" id="BoxMesh_7knmm"]
 size = Vector3(1, 4.7, 7)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_prrlo"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_l6b6q"]
 size = Vector3(1, 4.7, 7)
 
-[sub_resource type="BoxMesh" id="BoxMesh_1k6m8"]
+[sub_resource type="BoxMesh" id="BoxMesh_15crs"]
 size = Vector3(1, 4.7, 7)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_hvvy6"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_g58mt"]
 size = Vector3(1, 4.7, 10)
 
-[sub_resource type="BoxMesh" id="BoxMesh_p0jyp"]
+[sub_resource type="BoxMesh" id="BoxMesh_yh7gk"]
 size = Vector3(1, 4.7, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_f01c2"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_fddbw"]
 size = Vector3(1, 4.7, 10)
 
-[sub_resource type="BoxMesh" id="BoxMesh_esr7w"]
+[sub_resource type="BoxMesh" id="BoxMesh_r88m2"]
 size = Vector3(1, 4.7, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_vyo6t"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_qeqmq"]
 size = Vector3(20, 1, 20)
 
-[sub_resource type="BoxMesh" id="BoxMesh_2myfj"]
+[sub_resource type="BoxMesh" id="BoxMesh_js6xn"]
 size = Vector3(20, 1, 20)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_k4a1x"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_smobt"]
 size = Vector3(20, 1, 20)
 
-[sub_resource type="BoxMesh" id="BoxMesh_50hqa"]
+[sub_resource type="BoxMesh" id="BoxMesh_irjic"]
 size = Vector3(20, 1, 20)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_eknwl"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_7mg17"]
 size = Vector3(20, 1, 20)
 
-[sub_resource type="BoxMesh" id="BoxMesh_hfbrv"]
+[sub_resource type="BoxMesh" id="BoxMesh_hg0g4"]
 size = Vector3(20, 1, 20)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_iqclg"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_21o3p"]
 size = Vector3(1, 9, 20)
 
-[sub_resource type="BoxMesh" id="BoxMesh_pp83t"]
+[sub_resource type="BoxMesh" id="BoxMesh_xv0bj"]
 size = Vector3(1, 9, 20)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_082ux"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_mmqe1"]
 size = Vector3(1, 9, 20)
 
-[sub_resource type="BoxMesh" id="BoxMesh_x3egu"]
+[sub_resource type="BoxMesh" id="BoxMesh_qbyny"]
 size = Vector3(1, 9, 20)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_3gj6x"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_wt10i"]
 size = Vector3(20, 1, 10)
 
-[sub_resource type="BoxMesh" id="BoxMesh_q1mfr"]
+[sub_resource type="BoxMesh" id="BoxMesh_o1sm3"]
 size = Vector3(20, 1, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_i75hg"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_r7qfq"]
 size = Vector3(8, 1, 10)
 
-[sub_resource type="BoxMesh" id="BoxMesh_gpmwm"]
+[sub_resource type="BoxMesh" id="BoxMesh_odveb"]
 size = Vector3(8, 1, 10)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_d7ufo"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_3c8w4"]
 size = Vector3(8, 1, 10)
 
-[sub_resource type="BoxMesh" id="BoxMesh_l78jk"]
+[sub_resource type="BoxMesh" id="BoxMesh_w61uv"]
 size = Vector3(8, 1, 10)
 
 [node name="FpsWorld" type="Node3D"]
@@ -274,13 +274,13 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_bwkxd")
 
-[node name="Player" parent="." instance=ExtResource("2_isvcc")]
+[node name="Player" parent="." instance=ExtResource("1_fwpn7")]
 
 [node name="Level" type="Node3D" parent="."]
 
 [node name="StairMaster" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.20000002, -10.25)
-script = ExtResource("3_1qv2m")
+script = ExtResource("2_2ilpk")
 step_size = Vector3(4, 0.3, 0.5)
 step_height = 0.3
 num_steps = 20
@@ -290,13 +290,14 @@ metadata/_custom_type_script = "uid://bp0kn5qdeul8d"
 [node name="@CollisionShape3D@38150" type="CollisionShape3D" parent="Level/StairMaster"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -4.75)
 shape = SubResource("ConvexPolygonShape3D_1qv2m")
+debug_color = Color(0, 0.6, 0.69803923, 0.9647059)
 
 [node name="@MultiMeshInstance3D@38151" type="MultiMeshInstance3D" parent="Level/StairMaster"]
 multimesh = SubResource("MultiMesh_hdp8y")
 
 [node name="StairMaster2" type="StaticBody3D" parent="Level"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.25, 5.9, -7)
-script = ExtResource("3_1qv2m")
+script = ExtResource("2_2ilpk")
 step_size = Vector3(6.05, 0.3, 0.5)
 step_height = 0.3
 num_steps = 20
@@ -306,13 +307,14 @@ metadata/_custom_type_script = "uid://bp0kn5qdeul8d"
 [node name="@CollisionShape3D@56560" type="CollisionShape3D" parent="Level/StairMaster2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -4.75)
 shape = SubResource("ConvexPolygonShape3D_bwkxd")
+debug_color = Color(0, 0.6, 0.69803923, 0.9647059)
 
 [node name="@MultiMeshInstance3D@56561" type="MultiMeshInstance3D" parent="Level/StairMaster2"]
 multimesh = SubResource("MultiMesh_rlac8")
 
 [node name="StairMaster5" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, -10.25, 5.9, -7)
-script = ExtResource("3_1qv2m")
+script = ExtResource("2_2ilpk")
 step_size = Vector3(6.05, 0.3, 0.5)
 step_height = 0.3
 num_steps = 20
@@ -322,13 +324,14 @@ metadata/_custom_type_script = "uid://bp0kn5qdeul8d"
 [node name="_CollisionShape3D_56560" type="CollisionShape3D" parent="Level/StairMaster5"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -4.75)
 shape = SubResource("ConvexPolygonShape3D_bwkxd")
+debug_color = Color(0, 0.6, 0.69803923, 0.9647059)
 
 [node name="_MultiMeshInstance3D_56561" type="MultiMeshInstance3D" parent="Level/StairMaster5"]
 multimesh = SubResource("MultiMesh_rlac8")
 
 [node name="StairMaster3" type="StaticBody3D" parent="Level"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 9.5, 10.9, 3)
-script = ExtResource("3_1qv2m")
+script = ExtResource("2_2ilpk")
 step_size = Vector3(14, 1, 1)
 step_height = 0.3
 num_steps = 7
@@ -338,13 +341,14 @@ metadata/_custom_type_script = "uid://bp0kn5qdeul8d"
 [node name="@CollisionShape3D@68392" type="CollisionShape3D" parent="Level/StairMaster3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3)
 shape = SubResource("ConvexPolygonShape3D_hdp8y")
+debug_color = Color(0, 0.6, 0.69803923, 0.9647059)
 
 [node name="@MultiMeshInstance3D@68393" type="MultiMeshInstance3D" parent="Level/StairMaster3"]
 multimesh = SubResource("MultiMesh_swwd3")
 
 [node name="StairMaster4" type="StaticBody3D" parent="Level"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.5, 10.9, 3)
-script = ExtResource("3_1qv2m")
+script = ExtResource("2_2ilpk")
 step_size = Vector3(14, 1, 1)
 step_height = 0.3
 num_steps = 7
@@ -354,528 +358,529 @@ metadata/_custom_type_script = "uid://bp0kn5qdeul8d"
 [node name="_CollisionShape3D_68392" type="CollisionShape3D" parent="Level/StairMaster4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3)
 shape = SubResource("ConvexPolygonShape3D_hdp8y")
+debug_color = Color(0, 0.6, 0.69803923, 0.9647059)
 
 [node name="_MultiMeshInstance3D_68393" type="MultiMeshInstance3D" parent="Level/StairMaster4"]
 multimesh = SubResource("MultiMesh_swwd3")
 
 [node name="Platform" type="StaticBody3D" parent="Level"]
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113209" type="CollisionShape3D" parent="Level/Platform"]
-shape = SubResource("BoxShape3D_1qv2m")
+[node name="@CollisionShape3D@155957" type="CollisionShape3D" parent="Level/Platform"]
+shape = SubResource("BoxShape3D_fwpn7")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113210" type="MeshInstance3D" parent="Level/Platform"]
-mesh = SubResource("BoxMesh_swwd3")
+[node name="@MeshInstance3D@155958" type="MeshInstance3D" parent="Level/Platform"]
+mesh = SubResource("BoxMesh_2ilpk")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform6" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 2.85, 0)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 4.7, 20)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113211" type="CollisionShape3D" parent="Level/Platform6"]
-shape = SubResource("BoxShape3D_eqts1")
+[node name="@CollisionShape3D@155959" type="CollisionShape3D" parent="Level/Platform6"]
+shape = SubResource("BoxShape3D_7l31x")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113212" type="MeshInstance3D" parent="Level/Platform6"]
-mesh = SubResource("BoxMesh_6tdbn")
+[node name="@MeshInstance3D@155960" type="MeshInstance3D" parent="Level/Platform6"]
+mesh = SubResource("BoxMesh_gn3th")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform7" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 2.85, 0)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 4.7, 20)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113213" type="CollisionShape3D" parent="Level/Platform7"]
-shape = SubResource("BoxShape3D_i71pe")
+[node name="@CollisionShape3D@155961" type="CollisionShape3D" parent="Level/Platform7"]
+shape = SubResource("BoxShape3D_3qw3d")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113214" type="MeshInstance3D" parent="Level/Platform7"]
-mesh = SubResource("BoxMesh_k3s4b")
+[node name="@MeshInstance3D@155962" type="MeshInstance3D" parent="Level/Platform7"]
+mesh = SubResource("BoxMesh_ibpc2")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform13" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 13.25, -20.5)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 16, 19)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113215" type="CollisionShape3D" parent="Level/Platform13"]
-shape = SubResource("BoxShape3D_cgv0e")
+[node name="@CollisionShape3D@155963" type="CollisionShape3D" parent="Level/Platform13"]
+shape = SubResource("BoxShape3D_cx0jw")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113216" type="MeshInstance3D" parent="Level/Platform13"]
-mesh = SubResource("BoxMesh_xf6uy")
+[node name="@MeshInstance3D@155964" type="MeshInstance3D" parent="Level/Platform13"]
+mesh = SubResource("BoxMesh_sbnd3")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform14" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 13.25, -20.5)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 16, 19)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113217" type="CollisionShape3D" parent="Level/Platform14"]
-shape = SubResource("BoxShape3D_a04jl")
+[node name="@CollisionShape3D@155965" type="CollisionShape3D" parent="Level/Platform14"]
+shape = SubResource("BoxShape3D_ld01p")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113218" type="MeshInstance3D" parent="Level/Platform14"]
-mesh = SubResource("BoxMesh_u6pr5")
+[node name="@MeshInstance3D@155966" type="MeshInstance3D" parent="Level/Platform14"]
+mesh = SubResource("BoxMesh_1grer")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform25" type="StaticBody3D" parent="Level"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 13.25, -29.5)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 16, 18)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113219" type="CollisionShape3D" parent="Level/Platform25"]
-shape = SubResource("BoxShape3D_c1px2")
+[node name="@CollisionShape3D@155967" type="CollisionShape3D" parent="Level/Platform25"]
+shape = SubResource("BoxShape3D_iq1b2")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113220" type="MeshInstance3D" parent="Level/Platform25"]
-mesh = SubResource("BoxMesh_7myup")
+[node name="@MeshInstance3D@155968" type="MeshInstance3D" parent="Level/Platform25"]
+mesh = SubResource("BoxMesh_gkncr")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform15" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 8.55, 3)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 4.7, 14)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113221" type="CollisionShape3D" parent="Level/Platform15"]
-shape = SubResource("BoxShape3D_h6f2k")
+[node name="@CollisionShape3D@155969" type="CollisionShape3D" parent="Level/Platform15"]
+shape = SubResource("BoxShape3D_283g4")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113222" type="MeshInstance3D" parent="Level/Platform15"]
-mesh = SubResource("BoxMesh_mvaua")
+[node name="@MeshInstance3D@155970" type="MeshInstance3D" parent="Level/Platform15"]
+mesh = SubResource("BoxMesh_tqo0t")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform21" type="StaticBody3D" parent="Level"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 17, 8.55, -3.475)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 4.7, 14)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113223" type="CollisionShape3D" parent="Level/Platform21"]
-shape = SubResource("BoxShape3D_yib6y")
+[node name="@CollisionShape3D@155971" type="CollisionShape3D" parent="Level/Platform21"]
+shape = SubResource("BoxShape3D_v1ey5")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113224" type="MeshInstance3D" parent="Level/Platform21"]
-mesh = SubResource("BoxMesh_8synj")
+[node name="@MeshInstance3D@155972" type="MeshInstance3D" parent="Level/Platform21"]
+mesh = SubResource("BoxMesh_gc1sp")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform31" type="StaticBody3D" parent="Level"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -17, 8.55, -3.475)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 4.7, 14)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113225" type="CollisionShape3D" parent="Level/Platform31"]
-shape = SubResource("BoxShape3D_qgjyw")
+[node name="@CollisionShape3D@155973" type="CollisionShape3D" parent="Level/Platform31"]
+shape = SubResource("BoxShape3D_xdsky")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113226" type="MeshInstance3D" parent="Level/Platform31"]
-mesh = SubResource("BoxMesh_31w1t")
+[node name="@MeshInstance3D@155974" type="MeshInstance3D" parent="Level/Platform31"]
+mesh = SubResource("BoxMesh_py0wt")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform22" type="StaticBody3D" parent="Level"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 24.5, 12.749999, -10.5)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 15, 31)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113227" type="CollisionShape3D" parent="Level/Platform22"]
-shape = SubResource("BoxShape3D_go1y7")
+[node name="@CollisionShape3D@155975" type="CollisionShape3D" parent="Level/Platform22"]
+shape = SubResource("BoxShape3D_5d644")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113228" type="MeshInstance3D" parent="Level/Platform22"]
-mesh = SubResource("BoxMesh_ktdmy")
+[node name="@MeshInstance3D@155976" type="MeshInstance3D" parent="Level/Platform22"]
+mesh = SubResource("BoxMesh_uw6lp")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform26" type="StaticBody3D" parent="Level"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -24.5, 12.749999, -10.5)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 15, 31)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113229" type="CollisionShape3D" parent="Level/Platform26"]
-shape = SubResource("BoxShape3D_rtwkg")
+[node name="@CollisionShape3D@155977" type="CollisionShape3D" parent="Level/Platform26"]
+shape = SubResource("BoxShape3D_i2eg7")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113230" type="MeshInstance3D" parent="Level/Platform26"]
-mesh = SubResource("BoxMesh_epn6a")
+[node name="@MeshInstance3D@155978" type="MeshInstance3D" parent="Level/Platform26"]
+mesh = SubResource("BoxMesh_8056p")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform28" type="StaticBody3D" parent="Level"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 12.75, 10.5)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 15, 80)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113231" type="CollisionShape3D" parent="Level/Platform28"]
-shape = SubResource("BoxShape3D_835pv")
+[node name="@CollisionShape3D@155979" type="CollisionShape3D" parent="Level/Platform28"]
+shape = SubResource("BoxShape3D_eb2ca")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113232" type="MeshInstance3D" parent="Level/Platform28"]
-mesh = SubResource("BoxMesh_5dgk0")
+[node name="@MeshInstance3D@155980" type="MeshInstance3D" parent="Level/Platform28"]
+mesh = SubResource("BoxMesh_7w7mt")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform30" type="StaticBody3D" parent="Level"]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 20.75, 0)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(22, 1, 80)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113233" type="CollisionShape3D" parent="Level/Platform30"]
-shape = SubResource("BoxShape3D_wiicj")
+[node name="@CollisionShape3D@155981" type="CollisionShape3D" parent="Level/Platform30"]
+shape = SubResource("BoxShape3D_w3cas")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113234" type="MeshInstance3D" parent="Level/Platform30"]
-mesh = SubResource("BoxMesh_4ourw")
+[node name="@MeshInstance3D@155982" type="MeshInstance3D" parent="Level/Platform30"]
+mesh = SubResource("BoxMesh_de8p6")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform18" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 11.4, 3)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(10, 1, 14)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113235" type="CollisionShape3D" parent="Level/Platform18"]
-shape = SubResource("BoxShape3D_r5q8s")
+[node name="@CollisionShape3D@155983" type="CollisionShape3D" parent="Level/Platform18"]
+shape = SubResource("BoxShape3D_1cj0n")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113236" type="MeshInstance3D" parent="Level/Platform18"]
-mesh = SubResource("BoxMesh_ltmpb")
+[node name="@MeshInstance3D@155984" type="MeshInstance3D" parent="Level/Platform18"]
+mesh = SubResource("BoxMesh_ikhqo")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform23" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.2, 0)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(6, 1, 20)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113237" type="CollisionShape3D" parent="Level/Platform23"]
-shape = SubResource("BoxShape3D_qa36o")
+[node name="@CollisionShape3D@155985" type="CollisionShape3D" parent="Level/Platform23"]
+shape = SubResource("BoxShape3D_t1qlh")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113238" type="MeshInstance3D" parent="Level/Platform23"]
-mesh = SubResource("BoxMesh_jcr5o")
+[node name="@MeshInstance3D@155986" type="MeshInstance3D" parent="Level/Platform23"]
+mesh = SubResource("BoxMesh_7ylt8")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform24" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.45, -9.5)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(6, 6.5, 1)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113239" type="CollisionShape3D" parent="Level/Platform24"]
-shape = SubResource("BoxShape3D_w5451")
+[node name="@CollisionShape3D@155987" type="CollisionShape3D" parent="Level/Platform24"]
+shape = SubResource("BoxShape3D_xacpg")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113240" type="MeshInstance3D" parent="Level/Platform24"]
-mesh = SubResource("BoxMesh_6da4h")
+[node name="@MeshInstance3D@155988" type="MeshInstance3D" parent="Level/Platform24"]
+mesh = SubResource("BoxMesh_whri8")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform20" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 11.4, 3)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(10, 1, 14)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113241" type="CollisionShape3D" parent="Level/Platform20"]
-shape = SubResource("BoxShape3D_r3tao")
+[node name="@CollisionShape3D@155989" type="CollisionShape3D" parent="Level/Platform20"]
+shape = SubResource("BoxShape3D_2w1uy")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113242" type="MeshInstance3D" parent="Level/Platform20"]
-mesh = SubResource("BoxMesh_3uxmb")
+[node name="@MeshInstance3D@155990" type="MeshInstance3D" parent="Level/Platform20"]
+mesh = SubResource("BoxMesh_rgxdr")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform16" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 8.55, 3)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 4.7, 14)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113243" type="CollisionShape3D" parent="Level/Platform16"]
-shape = SubResource("BoxShape3D_kj453")
+[node name="@CollisionShape3D@155991" type="CollisionShape3D" parent="Level/Platform16"]
+shape = SubResource("BoxShape3D_ynybk")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113244" type="MeshInstance3D" parent="Level/Platform16"]
-mesh = SubResource("BoxMesh_vfjsr")
+[node name="@MeshInstance3D@155992" type="MeshInstance3D" parent="Level/Platform16"]
+mesh = SubResource("BoxMesh_ek5nm")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform8" type="StaticBody3D" parent="Level"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2.85, 9.5)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 4.7, 18)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113245" type="CollisionShape3D" parent="Level/Platform8"]
-shape = SubResource("BoxShape3D_0bpxk")
+[node name="@CollisionShape3D@155993" type="CollisionShape3D" parent="Level/Platform8"]
+shape = SubResource("BoxShape3D_84m23")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113246" type="MeshInstance3D" parent="Level/Platform8"]
-mesh = SubResource("BoxMesh_3n357")
+[node name="@MeshInstance3D@155994" type="MeshInstance3D" parent="Level/Platform8"]
+mesh = SubResource("BoxMesh_4ifpr")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform9" type="StaticBody3D" parent="Level"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.5, 2.85, -9.5)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 4.7, 7)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113247" type="CollisionShape3D" parent="Level/Platform9"]
-shape = SubResource("BoxShape3D_al8e7")
+[node name="@CollisionShape3D@155995" type="CollisionShape3D" parent="Level/Platform9"]
+shape = SubResource("BoxShape3D_ebwe7")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113248" type="MeshInstance3D" parent="Level/Platform9"]
-mesh = SubResource("BoxMesh_jsjpg")
+[node name="@MeshInstance3D@155996" type="MeshInstance3D" parent="Level/Platform9"]
+mesh = SubResource("BoxMesh_7knmm")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform10" type="StaticBody3D" parent="Level"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 5.5, 2.85, -9.5)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 4.7, 7)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113249" type="CollisionShape3D" parent="Level/Platform10"]
-shape = SubResource("BoxShape3D_prrlo")
+[node name="@CollisionShape3D@155997" type="CollisionShape3D" parent="Level/Platform10"]
+shape = SubResource("BoxShape3D_l6b6q")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113250" type="MeshInstance3D" parent="Level/Platform10"]
-mesh = SubResource("BoxMesh_1k6m8")
+[node name="@MeshInstance3D@155998" type="MeshInstance3D" parent="Level/Platform10"]
+mesh = SubResource("BoxMesh_15crs")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform11" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2.85, -15.000001)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 4.7, 10)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113251" type="CollisionShape3D" parent="Level/Platform11"]
-shape = SubResource("BoxShape3D_hvvy6")
+[node name="@CollisionShape3D@155999" type="CollisionShape3D" parent="Level/Platform11"]
+shape = SubResource("BoxShape3D_g58mt")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113252" type="MeshInstance3D" parent="Level/Platform11"]
-mesh = SubResource("BoxMesh_p0jyp")
+[node name="@MeshInstance3D@156000" type="MeshInstance3D" parent="Level/Platform11"]
+mesh = SubResource("BoxMesh_yh7gk")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform12" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.85, -15.000001)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 4.7, 10)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113253" type="CollisionShape3D" parent="Level/Platform12"]
-shape = SubResource("BoxShape3D_f01c2")
+[node name="@CollisionShape3D@156001" type="CollisionShape3D" parent="Level/Platform12"]
+shape = SubResource("BoxShape3D_fddbw")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113254" type="MeshInstance3D" parent="Level/Platform12"]
-mesh = SubResource("BoxMesh_esr7w")
+[node name="@MeshInstance3D@156002" type="MeshInstance3D" parent="Level/Platform12"]
+mesh = SubResource("BoxMesh_r88m2")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform5" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.7000003, 0)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113255" type="CollisionShape3D" parent="Level/Platform5"]
-shape = SubResource("BoxShape3D_vyo6t")
+[node name="@CollisionShape3D@156003" type="CollisionShape3D" parent="Level/Platform5"]
+shape = SubResource("BoxShape3D_qeqmq")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113256" type="MeshInstance3D" parent="Level/Platform5"]
-mesh = SubResource("BoxMesh_2myfj")
+[node name="@MeshInstance3D@156004" type="MeshInstance3D" parent="Level/Platform5"]
+mesh = SubResource("BoxMesh_js6xn")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform17" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 11.400001, 0)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113257" type="CollisionShape3D" parent="Level/Platform17"]
-shape = SubResource("BoxShape3D_k4a1x")
+[node name="@CollisionShape3D@156005" type="CollisionShape3D" parent="Level/Platform17"]
+shape = SubResource("BoxShape3D_smobt")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113258" type="MeshInstance3D" parent="Level/Platform17"]
-mesh = SubResource("BoxMesh_50hqa")
+[node name="@MeshInstance3D@156006" type="MeshInstance3D" parent="Level/Platform17"]
+mesh = SubResource("BoxMesh_irjic")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform19" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 11.4, 0)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113259" type="CollisionShape3D" parent="Level/Platform19"]
-shape = SubResource("BoxShape3D_eknwl")
+[node name="@CollisionShape3D@156007" type="CollisionShape3D" parent="Level/Platform19"]
+shape = SubResource("BoxShape3D_7mg17")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113260" type="MeshInstance3D" parent="Level/Platform19"]
-mesh = SubResource("BoxMesh_hfbrv")
+[node name="@MeshInstance3D@156008" type="MeshInstance3D" parent="Level/Platform19"]
+mesh = SubResource("BoxMesh_hg0g4")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform27" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.5, 15.800001, 0)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 9, 20)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113261" type="CollisionShape3D" parent="Level/Platform27"]
-shape = SubResource("BoxShape3D_iqclg")
+[node name="@CollisionShape3D@156009" type="CollisionShape3D" parent="Level/Platform27"]
+shape = SubResource("BoxShape3D_21o3p")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113262" type="MeshInstance3D" parent="Level/Platform27"]
-mesh = SubResource("BoxMesh_pp83t")
+[node name="@MeshInstance3D@156010" type="MeshInstance3D" parent="Level/Platform27"]
+mesh = SubResource("BoxMesh_xv0bj")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform29" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.5, 15.8, 0)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(1, 9, 20)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113263" type="CollisionShape3D" parent="Level/Platform29"]
-shape = SubResource("BoxShape3D_082ux")
+[node name="@CollisionShape3D@156011" type="CollisionShape3D" parent="Level/Platform29"]
+shape = SubResource("BoxShape3D_mmqe1")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113264" type="MeshInstance3D" parent="Level/Platform29"]
-mesh = SubResource("BoxMesh_x3egu")
+[node name="@MeshInstance3D@156012" type="MeshInstance3D" parent="Level/Platform29"]
+mesh = SubResource("BoxMesh_qbyny")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform2" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.7000003, -25)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(20, 1, 10)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113265" type="CollisionShape3D" parent="Level/Platform2"]
-shape = SubResource("BoxShape3D_3gj6x")
+[node name="@CollisionShape3D@156013" type="CollisionShape3D" parent="Level/Platform2"]
+shape = SubResource("BoxShape3D_wt10i")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113266" type="MeshInstance3D" parent="Level/Platform2"]
-mesh = SubResource("BoxMesh_q1mfr")
+[node name="@MeshInstance3D@156014" type="MeshInstance3D" parent="Level/Platform2"]
+mesh = SubResource("BoxMesh_o1sm3")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform3" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 5.7000003, -15)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(8, 1, 10)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113267" type="CollisionShape3D" parent="Level/Platform3"]
-shape = SubResource("BoxShape3D_i75hg")
+[node name="@CollisionShape3D@156015" type="CollisionShape3D" parent="Level/Platform3"]
+shape = SubResource("BoxShape3D_r7qfq")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113268" type="MeshInstance3D" parent="Level/Platform3"]
-mesh = SubResource("BoxMesh_gpmwm")
+[node name="@MeshInstance3D@156016" type="MeshInstance3D" parent="Level/Platform3"]
+mesh = SubResource("BoxMesh_odveb")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
 
 [node name="Platform4" type="StaticBody3D" parent="Level"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 5.7000003, -15)
-script = ExtResource("1_uyxqw")
+script = ExtResource("3_7l31x")
 size = Vector3(8, 1, 10)
 _material = SubResource("StandardMaterial3D_isvcc")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@113269" type="CollisionShape3D" parent="Level/Platform4"]
-shape = SubResource("BoxShape3D_d7ufo")
+[node name="@CollisionShape3D@156017" type="CollisionShape3D" parent="Level/Platform4"]
+shape = SubResource("BoxShape3D_3c8w4")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@113270" type="MeshInstance3D" parent="Level/Platform4"]
-mesh = SubResource("BoxMesh_l78jk")
+[node name="@MeshInstance3D@156018" type="MeshInstance3D" parent="Level/Platform4"]
+mesh = SubResource("BoxMesh_w61uv")
 surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
 metadata/_edit_group_ = true
