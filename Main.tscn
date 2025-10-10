@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1p1ycf2cb1ww"]
+
+[ext_resource type="Script" uid="uid://dvxwbaw1fuf0m" path="res://main.gd" id="1_glv2v"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rxg2q"]
+viewport_path = NodePath("TextureRect/SubViewport")
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_glv2v")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_rxg2q")
+
+[node name="SubViewport" type="SubViewport" parent="TextureRect"]
+size = Vector2i(1920, 1080)
+
+[node name="Demos" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Demos"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Demos/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Demos/MarginContainer/ScrollContainer"]
+layout_mode = 2
+columns = 5

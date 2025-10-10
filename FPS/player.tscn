@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://6nttfq8w3f5a"]
+
+[ext_resource type="Script" uid="uid://b7d0kh7753awm" path="res://FPS/player.gd" id="1_3vd0r"]
+[ext_resource type="AudioStream" uid="uid://dxy4fg4fmiiaj" path="res://FPS/footstep.wav" id="2_yavrf"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yavrf"]
+size = Vector3(0.1, 0.1, 1)
+
+[node name="Player" type="CharacterBody3D"]
+process_mode = 1
+collision_mask = 32769
+script = ExtResource("1_3vd0r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_oul6g")
+
+[node name="AudioStreamPlayer3DFootstep" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_yavrf")
+unit_size = 3.0
+max_db = 0.0
+max_distance = 3.0
+
+[node name="CamH" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CamH"]
+cull_mask = 1048573
+near = 0.002
+
+[node name="AudioListener3D" type="AudioListener3D" parent="CamH/Camera3D"]
+current = true
+
+[node name="GunMount" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 1.495, -0.835)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GunMount"]
+mesh = SubResource("BoxMesh_yavrf")
