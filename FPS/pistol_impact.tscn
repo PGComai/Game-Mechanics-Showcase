@@ -32,7 +32,7 @@ transparency = 4
 shading_mode = 0
 vertex_color_use_as_albedo = true
 use_point_size = true
-point_size = 5.0
+point_size = 2.0
 
 [sub_resource type="PointMesh" id="PointMesh_okyft"]
 material = SubResource("StandardMaterial3D_8l31u")

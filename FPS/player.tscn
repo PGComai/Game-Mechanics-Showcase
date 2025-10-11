@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://6nttfq8w3f5a"]
+[gd_scene load_steps=7 format=3 uid="uid://6nttfq8w3f5a"]
 
 [ext_resource type="Script" uid="uid://b7d0kh7753awm" path="res://FPS/player.gd" id="1_3vd0r"]
 [ext_resource type="AudioStream" uid="uid://dxy4fg4fmiiaj" path="res://FPS/footstep.wav" id="2_yavrf"]
@@ -6,7 +6,12 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_oul6g"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("current_gun")]
+[sub_resource type="SphereShape3D" id="SphereShape3D_m18y8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_uvqrr"]
+radius = 0.48
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("current_gun") groups=["player"]]
 process_mode = 1
 collision_mask = 32769
 script = ExtResource("1_3vd0r")
@@ -46,3 +51,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.30500007, -0.8)
 
 [node name="RayCast3DGun" type="RayCast3D" parent="CamH/Camera3D"]
 target_position = Vector3(0, 0, -1000)
+
+[node name="CollisionShape3DCrouch" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_m18y8")
+disabled = true
+
+[node name="CollisionShape3DCrouchAir" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5000001, 0)
+shape = SubResource("SphereShape3D_m18y8")
+disabled = true
+
+[node name="ShapeCast3DUncrouchUpTest" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_uvqrr")
+target_position = Vector3(0, 1, 0)
+max_results = 1
+
+[node name="ShapeCast3DUncrouchDownTest" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("SphereShape3D_uvqrr")
+max_results = 1

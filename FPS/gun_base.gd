@@ -19,6 +19,9 @@ enum AmmoType{LIGHT, HEAVY, SNIPER}
 @export var clip_size: int = 10
 @export var gun_ammo_type: AmmoType
 @export var scope_fov: float = 60.0
+@export var accuracy_hip: float = 0.2
+@export var accuracy_scope: float = 0.1
+@export var bullet_damage: float = 1.0
 
 
 var reload_timer := Timer.new()
@@ -34,6 +37,7 @@ var scoped := false:
 		scoped = value
 		if changed:
 			scoped_changed.emit()
+var movement_dir := Vector3.ZERO
 
 
 func _ready() -> void:

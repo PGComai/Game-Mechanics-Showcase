@@ -4,10 +4,15 @@ extends Gun
 const PISTOL_EJECT = preload("uid://ph6qi5x0ye6b")
 
 
-@onready var visual: Node3D = $Visual
-@onready var particle_spot: Node3D = $Visual/ParticleSpot
+@onready var movement_pivot: Node3D = $MovementPivot
+@onready var visual: Node3D = $MovementPivot/Visual
+@onready var particle_spot: Node3D = $MovementPivot/Visual/ParticleSpot
+@onready var animation_player: AnimationPlayer = $MovementPivot/Visual/AnimationPlayer
 @onready var reticle: Control = $Reticle
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
+func _process(delta: float) -> void:
+	movement_pivot.rotation.z = clampf(movement_dir.x, -1.5, 1.5) * -(PI/32.0)
 
 
 func _on_fired() -> void:

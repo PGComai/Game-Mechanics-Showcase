@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c47wrmch7y5xt"]
+
+[ext_resource type="Script" uid="uid://cr223a2gqr3wg" path="res://FPS/enemy_spawner.gd" id="1_uaoec"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_sr87u"]
+radius = 1.5
+
+[node name="EnemySpawner" type="Node3D"]
+script = ExtResource("1_uaoec")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_sr87u")
+
+[node name="TimerSpawn" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="TimerSpawn" to="." method="_on_timer_spawn_timeout"]

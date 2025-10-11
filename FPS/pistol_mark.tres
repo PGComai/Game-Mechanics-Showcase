@@ -1,0 +1,59 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://dor3ljifr6ctg"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_6mx3x"]
+expanded_output_ports = [0]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_1p6ja"]
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_6mx3x"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_1dwlq"]
+expanded_output_ports = [0]
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx, depth_prepass_alpha;
+
+uniform sampler2D tex_frg_2;
+uniform sampler2D tex_frg_3;
+uniform sampler2D tex_frg_5;
+
+
+
+void fragment() {
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+	float n_out2p4 = n_out2p0.a;
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, UV);
+
+
+// Texture2D:5
+	vec4 n_out5p0 = texture(tex_frg_5, UV);
+
+
+// Mix:4
+	float n_out4p0 = mix(n_out2p4, n_out3p0.x, n_out5p0.x);
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	ALPHA = n_out4p0;
+
+
+}
+"
+flags/depth_prepass_alpha = true
+nodes/vertex/0/position = Vector2(1220, 260)
+nodes/fragment/0/position = Vector2(2280, 180)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_6mx3x")
+nodes/fragment/2/position = Vector2(-520, -380)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_1p6ja")
+nodes/fragment/3/position = Vector2(-580, 860)
+nodes/fragment/4/node = SubResource("VisualShaderNodeMix_6mx3x")
+nodes/fragment/4/position = Vector2(840, 440)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_1dwlq")
+nodes/fragment/5/position = Vector2(-1080, 100)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 2, 4, 4, 0, 3, 0, 4, 1, 4, 0, 0, 1, 5, 0, 4, 2)

@@ -1,0 +1,64 @@
+[gd_scene load_steps=12 format=3 uid="uid://c05e315l3ale"]
+
+[ext_resource type="Shader" uid="uid://dor3ljifr6ctg" path="res://FPS/pistol_mark.tres" id="1_r7ywu"]
+[ext_resource type="Script" uid="uid://d2ba2o8mbvkup" path="res://FPS/pistol_mark.gd" id="2_a0s5q"]
+
+[sub_resource type="Gradient" id="Gradient_a0s5q"]
+offsets = PackedFloat32Array(0.33050847, 0.4279661, 0.5254237, 0.6864407)
+colors = PackedColorArray(0, 0, 0, 1, 0.2592937, 0.2592937, 0.25929365, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sc36g"]
+gradient = SubResource("Gradient_a0s5q")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.7, 0.3)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_w42vk"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.80508476, 0.83474576)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_k2stx"]
+noise_type = 2
+frequency = 0.0137
+fractal_gain = 0.555
+cellular_return_type = 6
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aebju"]
+noise = SubResource("FastNoiseLite_k2stx")
+color_ramp = SubResource("Gradient_w42vk")
+
+[sub_resource type="Gradient" id="Gradient_r7ywu"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.2838983, 0.5169492, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a0s5q"]
+gradient = SubResource("Gradient_r7ywu")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ddsi8"]
+render_priority = 0
+shader = ExtResource("1_r7ywu")
+shader_parameter/tex_frg_2 = SubResource("GradientTexture2D_sc36g")
+shader_parameter/tex_frg_3 = SubResource("NoiseTexture2D_aebju")
+shader_parameter/tex_frg_5 = SubResource("GradientTexture2D_a0s5q")
+
+[sub_resource type="QuadMesh" id="QuadMesh_r7ywu"]
+size = Vector2(0.3, 0.3)
+
+[node name="PistolMark" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_ddsi8")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_r7ywu")
+script = ExtResource("2_a0s5q")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
