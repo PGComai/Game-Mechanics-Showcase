@@ -365,7 +365,6 @@ func uncrouch() -> void:
 
 
 func portals_too_close(xform1: Transform3D, xform2: Transform3D) -> bool:
-	prints(xform1, xform2)
 	if xform1.origin.distance_to(xform2.origin) > 2.2:
 		return false
 	var bottom_left_1: Vector3 = xform1.origin\
@@ -431,7 +430,6 @@ func actually_place_portal(
 						blue_portal.global_transform,
 						Transform3D(bas, portal_platform.to_global(local_pos))
 				):
-					print("too close")
 					return
 		if get_tree().get_first_node_in_group("portal_red"):
 			get_tree().get_first_node_in_group("portal_red").queue_free()
@@ -443,7 +441,6 @@ func actually_place_portal(
 						red_portal.global_transform,
 						Transform3D(bas, portal_platform.to_global(local_pos))
 				):
-					print("too close")
 					return
 		if get_tree().get_first_node_in_group("portal_blue"):
 			get_tree().get_first_node_in_group("portal_blue").queue_free()
@@ -461,10 +458,8 @@ func place_portal(
 		red: bool):
 	var local_pos := portal_platform.to_local(pos)
 	if is_equal_approx(local_pos.x * 2.0, portal_platform.size.x):
-		print("+X")
 		if portal_platform.size.y >= PORTAL_SIZE.y\
 		and portal_platform.size.z >= PORTAL_SIZE.x:
-			print("big enough")
 			local_pos.z = clampf(
 							local_pos.z,
 							(-portal_platform.size.z / 2.0) + (PORTAL_SIZE.x / 2.0),
@@ -483,20 +478,17 @@ func place_portal(
 								portal_platform.global_basis.y
 			)
 	elif is_equal_approx(local_pos.y * 2.0, portal_platform.size.y):
-		print("+Y")
 		var tall := portal_platform.size.x >= PORTAL_SIZE.y\
 		and portal_platform.size.z >= PORTAL_SIZE.x
 		var wide := portal_platform.size.x >= PORTAL_SIZE.x\
 		and portal_platform.size.z >= PORTAL_SIZE.y
 		if tall and wide:
-			print("big enough")
 			if absf(camera_3d.global_basis.y.dot(portal_platform.global_basis.z))\
 			> absf(camera_3d.global_basis.y.dot(portal_platform.global_basis.x)):
 				tall = false
 			else:
 				wide = false
 		if tall:
-			print("big enough")
 			local_pos.z = clampf(
 							local_pos.z,
 							(-portal_platform.size.z / 2.0) + (PORTAL_SIZE.x / 2.0),
@@ -515,7 +507,6 @@ func place_portal(
 								portal_platform.global_basis.x
 			)
 		elif wide:
-			print("big enough")
 			local_pos.z = clampf(
 							local_pos.z,
 							(-portal_platform.size.z / 2.0) + (PORTAL_SIZE.y / 2.0),
@@ -534,10 +525,8 @@ func place_portal(
 								portal_platform.global_basis.z
 			)
 	elif is_equal_approx(local_pos.z * 2.0, portal_platform.size.z):
-		print("+Z")
 		if portal_platform.size.y >= PORTAL_SIZE.y\
 		and portal_platform.size.x >= PORTAL_SIZE.x:
-			print("big enough")
 			local_pos.x = clampf(
 							local_pos.x,
 							(-portal_platform.size.x / 2.0) + (PORTAL_SIZE.x / 2.0),
@@ -556,10 +545,8 @@ func place_portal(
 								portal_platform.global_basis.y
 			)
 	elif is_equal_approx(-local_pos.x * 2.0, portal_platform.size.x):
-		print("-X")
 		if portal_platform.size.y >= PORTAL_SIZE.y\
 		and portal_platform.size.z >= PORTAL_SIZE.x:
-			print("big enough")
 			local_pos.z = clampf(
 							local_pos.z,
 							(-portal_platform.size.z / 2.0) + (PORTAL_SIZE.x / 2.0),
@@ -578,20 +565,17 @@ func place_portal(
 								portal_platform.global_basis.y
 			)
 	elif is_equal_approx(-local_pos.y * 2.0, portal_platform.size.y):
-		print("-Y")
 		var tall := portal_platform.size.x >= PORTAL_SIZE.y\
 		and portal_platform.size.z >= PORTAL_SIZE.x
 		var wide := portal_platform.size.x >= PORTAL_SIZE.x\
 		and portal_platform.size.z >= PORTAL_SIZE.y
 		if tall and wide:
-			print("big enough")
 			if absf(camera_3d.global_basis.y.dot(portal_platform.global_basis.z))\
 			> absf(camera_3d.global_basis.y.dot(portal_platform.global_basis.x)):
 				tall = false
 			else:
 				wide = false
 		if tall:
-			print("big enough")
 			local_pos.z = clampf(
 							local_pos.z,
 							(-portal_platform.size.z / 2.0) + (PORTAL_SIZE.x / 2.0),
@@ -610,7 +594,6 @@ func place_portal(
 								portal_platform.global_basis.x
 			)
 		elif wide:
-			print("big enough")
 			local_pos.z = clampf(
 							local_pos.z,
 							(-portal_platform.size.z / 2.0) + (PORTAL_SIZE.y / 2.0),
@@ -629,10 +612,8 @@ func place_portal(
 								portal_platform.global_basis.z
 			)
 	elif is_equal_approx(-local_pos.z * 2.0, portal_platform.size.z):
-		print("-Z")
 		if portal_platform.size.y >= PORTAL_SIZE.y\
 		and portal_platform.size.x >= PORTAL_SIZE.x:
-			print("big enough")
 			local_pos.x = clampf(
 							local_pos.x,
 							(-portal_platform.size.x / 2.0) + (PORTAL_SIZE.x / 2.0),
@@ -698,7 +679,6 @@ func _on_gun_fired() -> void:
 			if collider.is_in_group("portalable"):
 				var portal_platform: PlatformPortalable = collider
 				place_portal(portal_platform, pos, norm, true)
-	print("fired")
 
 
 func _on_gun_fired_secondary() -> void:
@@ -747,7 +727,6 @@ func _on_gun_fired_secondary() -> void:
 			if collider.is_in_group("portalable"):
 				var portal_platform: PlatformPortalable = collider
 				place_portal(portal_platform, pos, norm, false)
-	print("fired secondary")
 
 
 func _on_gun_reload_started() -> void:

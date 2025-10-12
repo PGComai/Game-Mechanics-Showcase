@@ -11,6 +11,12 @@ var red := true
 @onready var mesh_instance_3d_empty: MeshInstance3D = $MeshInstance3DEmpty
 @onready var cam_show: MeshInstance3D = $SubViewport/Camera3D/CamShow
 @onready var virtual_transform: Node3D = $VirtualTransform
+@onready var top_left: Node3D = $TopLeft
+@onready var bottom_right: Node3D = $BottomRight
+@onready var inner_collider: StaticBody3D = $InnerCollider
+@onready var inner_detector: Area3D = $InnerDetector
+@onready var outer_detector: Area3D = $OuterDetector
+@onready var player_detector: Area3D = $PlayerDetector
 
 
 func _ready() -> void:
@@ -54,16 +60,23 @@ func _process(delta: float) -> void:
 	var player: Player = get_tree().get_first_node_in_group("player")
 	
 	if player and other_portal:
-		var diagonal: float = sqrt(pow(1.1, 2.0) + pow(2.2, 2.0))
 		var player_cam: Camera3D = player.camera_3d
 		
+		camera_3d.global_transform = other_portal.virtual_transform.global_transform\
+		* virtual_transform.global_transform.inverse() * player_cam.global_transform
+		
 		var dist_to_portal := player_cam.global_position.distance_to(global_position)
-		var cam_local_pos := virtual_transform.to_local(player_cam.global_position)
-		var cam_local_basis := virtual_transform.global_basis.inverse() * player_cam.global_basis
-		camera_3d.position = other_portal.virtual_transform.to_global(cam_local_pos)
-		#camera_3d.global_basis = other_portal.virtual_transform.global_basis * cam_local_basis
-		camera_3d.global_basis = Basis.looking_at(other_portal.virtual_transform.global_basis * -cam_local_pos)
 		camera_3d.near = dist_to_portal
-		var offset: Vector3 = player_cam.to_local(global_position)
-		var cam_frust := player_cam.get_frustum()
-		#camera_3d.set_frustum(1.0 / dist_to_portal, -Vector2(offset.x, offset.y), dist_to_portal, 4000.0)
+			
+		var collider_on := inner_detector.get_overlapping_bodies() and not outer_detector.get_overlapping_bodies()
+		if player_detector.get_overlapping_bodies().has(player):
+			player.set_collision_layer_value(1, not collider_on)
+			player.set_collision_mask_value(1, not collider_on)
+			var pl := Plane(global_basis.z, global_position)
+			if not pl.is_point_over(player.camera_3d.global_position):
+				teleport_player(player, other_portal)
+
+
+func teleport_player(player: Player, other_portal: Portal) -> void:
+	player.global_transform = other_portal.virtual_transform.global_transform\
+	* virtual_transform.global_transform.inverse() * player.global_transform

@@ -15,7 +15,8 @@ radius = 0.48
 
 [node name="PlayerPortals" type="CharacterBody3D" node_paths=PackedStringArray("current_gun") groups=["player"]]
 process_mode = 1
-collision_mask = 32769
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_eu0rs")
 current_gun = NodePath("CamH/Camera3D/GunMount/PortalGun")
 portal_mode = true
