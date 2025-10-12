@@ -1,0 +1,75 @@
+[gd_resource type="VisualShader" load_steps=7 format=3 uid="uid://dnemn12b2kjd7"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_d320x"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_yyrhe"]
+source = 5
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_d320x"]
+parameter_name = "Viewport"
+
+[sub_resource type="VisualShaderNodeMix" id="VisualShaderNodeMix_d320x"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(1, 1, 1, 1), 2, 0.5]
+op_type = 6
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_mw28y"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_d320x"]
+parameter_name = "OutlineColor"
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform sampler2D Viewport;
+uniform vec4 OutlineColor : source_color;
+uniform sampler2D tex_frg_7;
+uniform sampler2D tex_frg_2;
+
+
+
+void fragment() {
+	vec4 n_out3p0;
+// Texture2D:3
+	n_out3p0 = texture(Viewport, UV);
+
+
+// ColorParameter:8
+	vec4 n_out8p0 = OutlineColor;
+
+
+// Texture2D:7
+	vec4 n_out7p0 = texture(tex_frg_7, UV);
+
+
+// Mix:6
+	vec4 n_out6p0 = mix(n_out3p0, n_out8p0, n_out7p0.x);
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// Output:0
+	ALBEDO = vec3(n_out6p0.xyz);
+	ALPHA = n_out2p0.x;
+
+
+}
+"
+flags/unshaded = true
+nodes/vertex/0/position = Vector2(840, 160)
+nodes/fragment/0/position = Vector2(1600, 240)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_d320x")
+nodes/fragment/2/position = Vector2(-840, 1920)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_yyrhe")
+nodes/fragment/3/position = Vector2(-720, 300)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture2DParameter_d320x")
+nodes/fragment/4/position = Vector2(-1600, 120)
+nodes/fragment/6/node = SubResource("VisualShaderNodeMix_d320x")
+nodes/fragment/6/position = Vector2(40, 500)
+nodes/fragment/7/node = SubResource("VisualShaderNodeTexture_mw28y")
+nodes/fragment/7/position = Vector2(-820, 1280)
+nodes/fragment/8/node = SubResource("VisualShaderNodeColorParameter_d320x")
+nodes/fragment/8/position = Vector2(-1560, 980)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 1, 4, 0, 3, 2, 3, 0, 6, 0, 6, 0, 0, 0, 7, 0, 6, 2, 8, 0, 6, 1)

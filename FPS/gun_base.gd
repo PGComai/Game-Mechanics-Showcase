@@ -6,6 +6,7 @@ class_name Gun
 signal reload_started
 signal reload_finished
 signal fired
+signal fired_secondary
 signal need_ammo
 signal last_shot
 signal scoped_changed
@@ -22,6 +23,7 @@ enum AmmoType{LIGHT, HEAVY, SNIPER}
 @export var accuracy_hip: float = 0.2
 @export var accuracy_scope: float = 0.1
 @export var bullet_damage: float = 1.0
+@export var unlimited_ammo := false
 
 
 var reload_timer := Timer.new()
@@ -59,15 +61,30 @@ func fire() -> void:
 			can_shoot = false
 			fired.emit()
 			shot_timer.start()
-			clip -= 1
-			if clip == 0:
-				last_shot.emit()
+			if not unlimited_ammo:
+				clip -= 1
+				if clip == 0:
+					last_shot.emit()
+		else:
+			need_ammo.emit()
+
+
+func fire_secondary() -> void:
+	if not reloading and can_shoot:
+		if clip:
+			can_shoot = false
+			fired_secondary.emit()
+			shot_timer.start()
+			if not unlimited_ammo:
+				clip -= 1
+				if clip == 0:
+					last_shot.emit()
 		else:
 			need_ammo.emit()
 
 
 func reload(ammo_in: int) -> int:
-	if reloading:
+	if reloading or unlimited_ammo:
 		return ammo_in
 	var ammo_left: int = maxi((ammo_in + clip) - clip_size, 0)
 	clip += ammo_in

@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://cv71sqxea85pk"]
+
+[ext_resource type="Material" uid="uid://d2l282h4leir2" path="res://FPS/gun_material.tres" id="1_5w3p2"]
+[ext_resource type="Script" uid="uid://baqdqwmaxj52i" path="res://Portals/portal_gun.gd" id="1_h33wk"]
+
+[sub_resource type="Gradient" id="Gradient_qy5pi"]
+offsets = PackedFloat32Array(0.036666665, 0.06333333, 0.086666666)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cxw0b"]
+gradient = SubResource("Gradient_qy5pi")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[node name="PortalGun" type="Node3D"]
+script = ExtResource("1_h33wk")
+accuracy_hip = 0.0
+accuracy_scope = 0.0
+bullet_damage = 0.0
+unlimited_ammo = true
+
+[node name="MovementPivot" type="Node3D" parent="."]
+
+[node name="Visual" type="Node3D" parent="MovementPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.99999964, 0, 0, 0, 0.99999964, 0, -0.08546629, 0)
+
+[node name="ParticleSpot" type="Node3D" parent="MovementPivot/Visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="MovementPivot/Visual"]
+size = Vector3(0.1, 0.1, 0.5)
+material = ExtResource("1_5w3p2")
+
+[node name="Reticle" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Reticle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Reticle/CenterContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_cxw0b")

@@ -25,6 +25,8 @@ const HEAD_HEIGHT_CROUCH: float = 0.8
 const CROUCH_SLOWDOWN: float = 0.7
 const PISTOL_IMPACT = preload("uid://d0qsi4tjujcfy")
 const PISTOL_MARK = preload("uid://c05e315l3ale")
+const PORTAL = preload("uid://cgyulcoijx3v8")
+const PORTAL_SIZE: Vector2 = Vector2(1.1, 2.2)
 
 
 signal jumped
@@ -44,10 +46,12 @@ enum MovementState {ON_FLOOR, ASCENDING, FALLING}
 		current_gun = value
 		if current_gun:
 			current_gun.fired.connect(_on_gun_fired)
+			current_gun.fired_secondary.connect(_on_gun_fired_secondary)
 			current_gun.reload_started.connect(_on_gun_reload_started)
 			current_gun.reload_finished.connect(_on_gun_reload_finished)
 			current_gun.need_ammo.connect(_on_gun_need_ammo)
 			current_gun.last_shot.connect(_on_gun_last_shot)
+@export var portal_mode := false
 
 
 var current_movement_state: MovementState = MovementState.ON_FLOOR:
@@ -142,7 +146,7 @@ func footstep(step_speed: float) -> void:
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("scope"):
+	if Input.is_action_pressed("scope") and not portal_mode:
 		gun_mount.position = lerp(gun_mount.position, gun_spot_scope.position, 0.4)
 		if current_gun:
 			camera_3d.fov = lerpf(camera_3d.fov, current_gun.scope_fov, 0.4)
@@ -156,10 +160,16 @@ func _process(delta: float) -> void:
 			current_gun.scoped = false
 	
 	if current_gun:
-		if Input.is_action_just_pressed("shoot"):
-			current_gun.fire()
-		if Input.is_action_just_pressed("reload"):
-			current_gun.reload(10)
+		if not portal_mode:
+			if Input.is_action_just_pressed("shoot"):
+				current_gun.fire()
+			if Input.is_action_just_pressed("reload"):
+				current_gun.reload(10)
+		else:
+			if Input.is_action_just_pressed("shoot"):
+				current_gun.fire()
+			elif Input.is_action_just_pressed("scope"):
+				current_gun.fire_secondary()
 
 
 func _physics_process(delta: float) -> void:
@@ -353,6 +363,295 @@ func uncrouch() -> void:
 			collision_shape_3d.disabled = false
 			head_y_target = HEAD_HEIGHT_STAND
 
+
+func portals_too_close(xform1: Transform3D, xform2: Transform3D) -> bool:
+	prints(xform1, xform2)
+	if xform1.origin.distance_to(xform2.origin) > 2.2:
+		return false
+	var bottom_left_1: Vector3 = xform1.origin\
+	- (xform1.basis.x * (PORTAL_SIZE.x / 2.0))\
+	- (xform1.basis.y * (PORTAL_SIZE.y / 2.0))
+	var bottom_left_2: Vector3 = xform2.origin\
+	- (xform2.basis.x * (PORTAL_SIZE.x / 2.0))\
+	- (xform2.basis.y * (PORTAL_SIZE.y / 2.0))
+	
+	var bottom_right_1: Vector3 = xform1.origin\
+	+ (xform1.basis.x * (PORTAL_SIZE.x / 2.0))\
+	- (xform1.basis.y * (PORTAL_SIZE.y / 2.0))
+	var bottom_right_2: Vector3 = xform2.origin\
+	+ (xform2.basis.x * (PORTAL_SIZE.x / 2.0))\
+	- (xform2.basis.y * (PORTAL_SIZE.y / 2.0))
+	
+	var top_right_1: Vector3 = xform1.origin\
+	+ (xform1.basis.x * (PORTAL_SIZE.x / 2.0))\
+	+ (xform1.basis.y * (PORTAL_SIZE.y / 2.0))
+	var top_right_2: Vector3 = xform2.origin\
+	+ (xform2.basis.x * (PORTAL_SIZE.x / 2.0))\
+	+ (xform2.basis.y * (PORTAL_SIZE.y / 2.0))
+	
+	var top_left_1: Vector3 = xform1.origin\
+	+ (xform1.basis.x * (PORTAL_SIZE.x / 2.0))\
+	+ (xform1.basis.y * (PORTAL_SIZE.y / 2.0))
+	var top_left_2: Vector3 = xform2.origin\
+	+ (xform2.basis.x * (PORTAL_SIZE.x / 2.0))\
+	+ (xform2.basis.y * (PORTAL_SIZE.y / 2.0))
+	
+	var dist_bottom_left_1 := xform1.origin.distance_squared_to(bottom_left_2)
+	var dist_bottom_left_2 := xform2.origin.distance_squared_to(bottom_left_2)
+	
+	var dist_bottom_right_1 := xform1.origin.distance_squared_to(bottom_right_2)
+	var dist_bottom_right_2 := xform2.origin.distance_squared_to(bottom_right_2)
+	
+	var dist_top_right_1 := xform1.origin.distance_squared_to(top_right_2)
+	var dist_top_right_2 := xform2.origin.distance_squared_to(top_right_2)
+	
+	var dist_top_left_1 := xform1.origin.distance_squared_to(top_left_2)
+	var dist_top_left_2 := xform2.origin.distance_squared_to(top_left_2)
+	
+	return dist_bottom_left_1 < dist_bottom_left_2\
+	or dist_bottom_right_1 < dist_bottom_right_2\
+	or dist_top_right_1 < dist_top_right_2\
+	or dist_top_left_1 < dist_top_left_2
+
+
+func actually_place_portal(
+		red: bool,
+		portal_platform: PlatformPortalable,
+		local_pos: Vector3,
+		norm: Vector3,
+		up: Vector3):
+	var bas := Basis.looking_at(
+							-norm,
+							up)
+	if red:
+		var blue_portal: Portal = get_tree().get_first_node_in_group("portal_blue")
+		if blue_portal:
+			if blue_portal.global_basis.z.is_equal_approx(norm):
+				if portals_too_close(
+						blue_portal.global_transform,
+						Transform3D(bas, portal_platform.to_global(local_pos))
+				):
+					print("too close")
+					return
+		if get_tree().get_first_node_in_group("portal_red"):
+			get_tree().get_first_node_in_group("portal_red").queue_free()
+	else:
+		var red_portal: Portal = get_tree().get_first_node_in_group("portal_red")
+		if red_portal:
+			if red_portal.global_basis.z.is_equal_approx(norm):
+				if portals_too_close(
+						red_portal.global_transform,
+						Transform3D(bas, portal_platform.to_global(local_pos))
+				):
+					print("too close")
+					return
+		if get_tree().get_first_node_in_group("portal_blue"):
+			get_tree().get_first_node_in_group("portal_blue").queue_free()
+	var new_portal: Portal = PORTAL.instantiate()
+	new_portal.red = red
+	portal_platform.add_child(new_portal)
+	new_portal.position = local_pos
+	new_portal.global_basis = bas
+
+
+func place_portal(
+		portal_platform: PlatformPortalable,
+		pos: Vector3,
+		norm: Vector3,
+		red: bool):
+	var local_pos := portal_platform.to_local(pos)
+	if is_equal_approx(local_pos.x * 2.0, portal_platform.size.x):
+		print("+X")
+		if portal_platform.size.y >= PORTAL_SIZE.y\
+		and portal_platform.size.z >= PORTAL_SIZE.x:
+			print("big enough")
+			local_pos.z = clampf(
+							local_pos.z,
+							(-portal_platform.size.z / 2.0) + (PORTAL_SIZE.x / 2.0),
+							(portal_platform.size.z / 2.0) - (PORTAL_SIZE.x / 2.0)
+			)
+			local_pos.y = clampf(
+							local_pos.y,
+							(-portal_platform.size.y / 2.0) + (PORTAL_SIZE.y / 2.0),
+							(portal_platform.size.y / 2.0) - (PORTAL_SIZE.y / 2.0)
+			)
+			actually_place_portal(
+								red,
+								portal_platform,
+								local_pos,
+								norm,
+								portal_platform.global_basis.y
+			)
+	elif is_equal_approx(local_pos.y * 2.0, portal_platform.size.y):
+		print("+Y")
+		var tall := portal_platform.size.x >= PORTAL_SIZE.y\
+		and portal_platform.size.z >= PORTAL_SIZE.x
+		var wide := portal_platform.size.x >= PORTAL_SIZE.x\
+		and portal_platform.size.z >= PORTAL_SIZE.y
+		if tall and wide:
+			print("big enough")
+			if absf(camera_3d.global_basis.y.dot(portal_platform.global_basis.z))\
+			> absf(camera_3d.global_basis.y.dot(portal_platform.global_basis.x)):
+				tall = false
+			else:
+				wide = false
+		if tall:
+			print("big enough")
+			local_pos.z = clampf(
+							local_pos.z,
+							(-portal_platform.size.z / 2.0) + (PORTAL_SIZE.x / 2.0),
+							(portal_platform.size.z / 2.0) - (PORTAL_SIZE.x / 2.0)
+			)
+			local_pos.x = clampf(
+							local_pos.x,
+							(-portal_platform.size.x / 2.0) + (PORTAL_SIZE.y / 2.0),
+							(portal_platform.size.x / 2.0) - (PORTAL_SIZE.y / 2.0)
+			)
+			actually_place_portal(
+								red,
+								portal_platform,
+								local_pos,
+								norm,
+								portal_platform.global_basis.x
+			)
+		elif wide:
+			print("big enough")
+			local_pos.z = clampf(
+							local_pos.z,
+							(-portal_platform.size.z / 2.0) + (PORTAL_SIZE.y / 2.0),
+							(portal_platform.size.z / 2.0) - (PORTAL_SIZE.y / 2.0)
+			)
+			local_pos.x = clampf(
+							local_pos.x,
+							(-portal_platform.size.x / 2.0) + (PORTAL_SIZE.x / 2.0),
+							(portal_platform.size.x / 2.0) - (PORTAL_SIZE.x / 2.0)
+			)
+			actually_place_portal(
+								red,
+								portal_platform,
+								local_pos,
+								norm,
+								portal_platform.global_basis.z
+			)
+	elif is_equal_approx(local_pos.z * 2.0, portal_platform.size.z):
+		print("+Z")
+		if portal_platform.size.y >= PORTAL_SIZE.y\
+		and portal_platform.size.x >= PORTAL_SIZE.x:
+			print("big enough")
+			local_pos.x = clampf(
+							local_pos.x,
+							(-portal_platform.size.x / 2.0) + (PORTAL_SIZE.x / 2.0),
+							(portal_platform.size.x / 2.0) - (PORTAL_SIZE.x / 2.0)
+			)
+			local_pos.y = clampf(
+							local_pos.y,
+							(-portal_platform.size.y / 2.0) + (PORTAL_SIZE.y / 2.0),
+							(portal_platform.size.y / 2.0) - (PORTAL_SIZE.y / 2.0)
+			)
+			actually_place_portal(
+								red,
+								portal_platform,
+								local_pos,
+								norm,
+								portal_platform.global_basis.y
+			)
+	elif is_equal_approx(-local_pos.x * 2.0, portal_platform.size.x):
+		print("-X")
+		if portal_platform.size.y >= PORTAL_SIZE.y\
+		and portal_platform.size.z >= PORTAL_SIZE.x:
+			print("big enough")
+			local_pos.z = clampf(
+							local_pos.z,
+							(-portal_platform.size.z / 2.0) + (PORTAL_SIZE.x / 2.0),
+							(portal_platform.size.z / 2.0) - (PORTAL_SIZE.x / 2.0)
+			)
+			local_pos.y = clampf(
+							local_pos.y,
+							(-portal_platform.size.y / 2.0) + (PORTAL_SIZE.y / 2.0),
+							(portal_platform.size.y / 2.0) - (PORTAL_SIZE.y / 2.0)
+			)
+			actually_place_portal(
+								red,
+								portal_platform,
+								local_pos,
+								norm,
+								portal_platform.global_basis.y
+			)
+	elif is_equal_approx(-local_pos.y * 2.0, portal_platform.size.y):
+		print("-Y")
+		var tall := portal_platform.size.x >= PORTAL_SIZE.y\
+		and portal_platform.size.z >= PORTAL_SIZE.x
+		var wide := portal_platform.size.x >= PORTAL_SIZE.x\
+		and portal_platform.size.z >= PORTAL_SIZE.y
+		if tall and wide:
+			print("big enough")
+			if absf(camera_3d.global_basis.y.dot(portal_platform.global_basis.z))\
+			> absf(camera_3d.global_basis.y.dot(portal_platform.global_basis.x)):
+				tall = false
+			else:
+				wide = false
+		if tall:
+			print("big enough")
+			local_pos.z = clampf(
+							local_pos.z,
+							(-portal_platform.size.z / 2.0) + (PORTAL_SIZE.x / 2.0),
+							(portal_platform.size.z / 2.0) - (PORTAL_SIZE.x / 2.0)
+			)
+			local_pos.x = clampf(
+							local_pos.x,
+							(-portal_platform.size.x / 2.0) + (PORTAL_SIZE.y / 2.0),
+							(portal_platform.size.x / 2.0) - (PORTAL_SIZE.y / 2.0)
+			)
+			actually_place_portal(
+								red,
+								portal_platform,
+								local_pos,
+								norm,
+								portal_platform.global_basis.x
+			)
+		elif wide:
+			print("big enough")
+			local_pos.z = clampf(
+							local_pos.z,
+							(-portal_platform.size.z / 2.0) + (PORTAL_SIZE.y / 2.0),
+							(portal_platform.size.z / 2.0) - (PORTAL_SIZE.y / 2.0)
+			)
+			local_pos.x = clampf(
+							local_pos.x,
+							(-portal_platform.size.x / 2.0) + (PORTAL_SIZE.x / 2.0),
+							(portal_platform.size.x / 2.0) - (PORTAL_SIZE.x / 2.0)
+			)
+			actually_place_portal(
+								red,
+								portal_platform,
+								local_pos,
+								norm,
+								portal_platform.global_basis.z
+			)
+	elif is_equal_approx(-local_pos.z * 2.0, portal_platform.size.z):
+		print("-Z")
+		if portal_platform.size.y >= PORTAL_SIZE.y\
+		and portal_platform.size.x >= PORTAL_SIZE.x:
+			print("big enough")
+			local_pos.x = clampf(
+							local_pos.x,
+							(-portal_platform.size.x / 2.0) + (PORTAL_SIZE.x / 2.0),
+							(portal_platform.size.x / 2.0) - (PORTAL_SIZE.x / 2.0)
+			)
+			local_pos.y = clampf(
+							local_pos.y,
+							(-portal_platform.size.y / 2.0) + (PORTAL_SIZE.y / 2.0),
+							(portal_platform.size.y / 2.0) - (PORTAL_SIZE.y / 2.0)
+			)
+			actually_place_portal(
+								red,
+								portal_platform,
+								local_pos,
+								norm,
+								portal_platform.global_basis.y
+			)
+
+
 func _on_gun_fired() -> void:
 	var accuracy: float
 	if current_gun.scoped:
@@ -371,29 +670,84 @@ func _on_gun_fired() -> void:
 	
 	if ray_cast_3d_gun.is_colliding():
 		var collider: Node3D = ray_cast_3d_gun.get_collider()
-		if collider.is_in_group("damageable"):
-			collider.health -= current_gun.bullet_damage
+		var pos := ray_cast_3d_gun.get_collision_point()
+		var norm := ray_cast_3d_gun.get_collision_normal()
+		var rc_dir := ray_cast_3d_gun.global_basis.z
+		var oblique: float = maxf(rc_dir.dot(norm), 0.0)
+		
+		if not portal_mode:
+			if collider.is_in_group("damageable"):
+				collider.health -= current_gun.bullet_damage
+			else:
+				var new_impact: GPUParticles3D = PISTOL_IMPACT.instantiate()
+				get_parent().add_child(new_impact)
+				var refl := -rc_dir.reflect(norm)
+				new_impact.look_at_from_position(
+										pos,
+										pos + (norm.slerp(-refl, 1.0 - oblique))
+										)
+				var p_mat: ParticleProcessMaterial = new_impact.process_material
+				p_mat.spread = oblique * 90.0
+				new_impact.speed_scale = 1.0 + (1.0 - oblique)
+				
+				var new_mark: MeshInstance3D = PISTOL_MARK.instantiate()
+				get_parent().add_child(new_mark)
+				new_mark.global_position = pos + (norm * 0.01)
+				new_mark.look_at(pos - norm)
 		else:
-			var new_impact: GPUParticles3D = PISTOL_IMPACT.instantiate()
-			get_parent().add_child(new_impact)
-			var pos := ray_cast_3d_gun.get_collision_point()
-			var norm := ray_cast_3d_gun.get_collision_normal()
-			var rc_dir := ray_cast_3d_gun.global_basis.z
-			var oblique: float = maxf(rc_dir.dot(norm), 0.0)
-			var refl := -rc_dir.reflect(norm)
-			new_impact.look_at_from_position(
-									pos,
-									pos + (norm.slerp(-refl, 1.0 - oblique))
-									)
-			var p_mat: ParticleProcessMaterial = new_impact.process_material
-			p_mat.spread = oblique * 90.0
-			new_impact.speed_scale = 1.0 + (1.0 - oblique)
-			
-			var new_mark: MeshInstance3D = PISTOL_MARK.instantiate()
-			get_parent().add_child(new_mark)
-			new_mark.global_position = pos + (norm * 0.01)
-			new_mark.look_at(pos - norm)
+			if collider.is_in_group("portalable"):
+				var portal_platform: PlatformPortalable = collider
+				place_portal(portal_platform, pos, norm, true)
 	print("fired")
+
+
+func _on_gun_fired_secondary() -> void:
+	var accuracy: float
+	if current_gun.scoped:
+		accuracy = current_gun.accuracy_scope
+	else:
+		accuracy = current_gun.accuracy_hip
+	var accuracy_vec := Vector3(randfn(0.0, accuracy),
+								randfn(0.0, accuracy),
+								randfn(0.0, accuracy))
+	accuracy_vec = Plane(camera_3d.global_basis.z, Vector3.ZERO).project(accuracy_vec)
+	ray_cast_3d_gun.look_at(ray_cast_3d_gun.global_position\
+					- (camera_3d.global_basis.z * 20.0)\
+					+ accuracy_vec)
+	ray_cast_3d_gun.force_update_transform()
+	ray_cast_3d_gun.force_raycast_update()
+	
+	if ray_cast_3d_gun.is_colliding():
+		var collider: Node3D = ray_cast_3d_gun.get_collider()
+		var pos := ray_cast_3d_gun.get_collision_point()
+		var norm := ray_cast_3d_gun.get_collision_normal()
+		var rc_dir := ray_cast_3d_gun.global_basis.z
+		var oblique: float = maxf(rc_dir.dot(norm), 0.0)
+		
+		if not portal_mode:
+			if collider.is_in_group("damageable"):
+				collider.health -= current_gun.bullet_damage
+			else:
+				var new_impact: GPUParticles3D = PISTOL_IMPACT.instantiate()
+				get_parent().add_child(new_impact)
+				var refl := -rc_dir.reflect(norm)
+				new_impact.look_at_from_position(
+										pos,
+										pos + (norm.slerp(-refl, 1.0 - oblique))
+										)
+				var p_mat: ParticleProcessMaterial = new_impact.process_material
+				p_mat.spread = oblique * 90.0
+				new_impact.speed_scale = 1.0 + (1.0 - oblique)
+				
+				var new_mark: MeshInstance3D = PISTOL_MARK.instantiate()
+				get_parent().add_child(new_mark)
+				new_mark.global_position = pos + (norm * 0.01)
+				new_mark.look_at(pos - norm)
+		else:
+			if collider.is_in_group("portalable"):
+				var portal_platform: PlatformPortalable = collider
+				place_portal(portal_platform, pos, norm, false)
+	print("fired secondary")
 
 
 func _on_gun_reload_started() -> void:

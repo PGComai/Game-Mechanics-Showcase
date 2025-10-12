@@ -29,6 +29,9 @@ enabled=PackedStringArray("res://addons/proc_gen_tools/plugin.cfg")
 nav=""
 player=""
 damageable=""
+portal_red=""
+portal_blue=""
+portalable=""
 
 [input]
 
