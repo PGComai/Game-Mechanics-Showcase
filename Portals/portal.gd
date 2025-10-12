@@ -2,7 +2,11 @@ extends Node3D
 class_name Portal
 
 
+const TELEPORT_LIMIT: int = 2
+
+
 var red := true
+var teleport_limiter: int = 0
 
 
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
@@ -79,10 +83,21 @@ func _process(delta: float) -> void:
 			var pl := Plane(global_basis.z, global_position)
 			if not pl.is_point_over(player.camera_3d.global_position):
 				teleport_player(player, other_portal)
+		elif not other_portal.player_detector.get_overlapping_bodies().has(player):
+			player.set_collision_layer_value(1, true)
+			player.set_collision_mask_value(1, true)
+	if teleport_limiter:
+		teleport_limiter -= 1
 
 
 func teleport_player(player: Player, other_portal: Portal) -> void:
-	player.global_transform = other_portal.virtual_transform.global_transform\
-	* virtual_transform.global_transform.inverse() * player.global_transform
-	player.velocity = other_portal.virtual_transform.global_basis\
-	* virtual_transform.global_basis.inverse() * player.velocity
+	if not teleport_limiter:
+		if red:
+			print("Red teleported player")
+		else:
+			print("Blue teleported player")
+		player.global_transform = other_portal.virtual_transform.global_transform\
+		* virtual_transform.global_transform.inverse() * player.global_transform
+		player.velocity = other_portal.virtual_transform.global_basis\
+		* virtual_transform.global_basis.inverse() * player.velocity
+	teleport_limiter = TELEPORT_LIMIT

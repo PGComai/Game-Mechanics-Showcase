@@ -84,10 +84,10 @@ data = PackedVector3Array(0.5, -1.1, 0, -0.5, -1.1, 0, 0.5, 1.1, 0, -0.5, -1.1, 
 size = Vector3(1.05, 2.15, 0.1227539)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6lrts"]
-size = Vector3(1.1, 2.2, 1)
+size = Vector3(0.2, 2.2, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jac53"]
-size = Vector3(2, 1, 1)
+size = Vector3(1, 0.2, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4865d"]
 size = Vector3(1.1, 2.2, 0.475)
@@ -180,19 +180,19 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="OuterDetector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15, 0, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0, 0.5)
 shape = SubResource("BoxShape3D_6lrts")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="OuterDetector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 0, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0, 0.5)
 shape = SubResource("BoxShape3D_6lrts")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="OuterDetector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0.5)
 shape = SubResource("BoxShape3D_jac53")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="OuterDetector"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.65, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.25, 0.5)
 shape = SubResource("BoxShape3D_jac53")
 
 [node name="PlayerDetector" type="Area3D" parent="."]
