@@ -14,7 +14,6 @@ sky_material = SubResource("ProceduralSkyMaterial_jbgmh")
 [sub_resource type="Environment" id="Environment_4q75n"]
 background_mode = 2
 sky = SubResource("Sky_ps8jh")
-tonemap_mode = 2
 
 [sub_resource type="Gradient" id="Gradient_isvcc"]
 offsets = PackedFloat32Array(0.9423077, 0.9692308)
@@ -127,11 +126,11 @@ _material = SubResource("StandardMaterial3D_jbgmh")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@566149" type="CollisionShape3D" parent="Platform"]
+[node name="@CollisionShape3D@636826" type="CollisionShape3D" parent="Platform"]
 shape = SubResource("BoxShape3D_ps8jh")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@566150" type="MeshInstance3D" parent="Platform"]
+[node name="@MeshInstance3D@636827" type="MeshInstance3D" parent="Platform"]
 mesh = SubResource("BoxMesh_4q75n")
 surface_material_override/0 = SubResource("StandardMaterial3D_jbgmh")
 metadata/_edit_group_ = true
@@ -143,11 +142,11 @@ _material = SubResource("StandardMaterial3D_jbgmh")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@566151" type="CollisionShape3D" parent="Platform2"]
+[node name="@CollisionShape3D@636828" type="CollisionShape3D" parent="Platform2"]
 shape = SubResource("BoxShape3D_hcm0m")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@566152" type="MeshInstance3D" parent="Platform2"]
+[node name="@MeshInstance3D@636829" type="MeshInstance3D" parent="Platform2"]
 mesh = SubResource("BoxMesh_8x8es")
 surface_material_override/0 = SubResource("StandardMaterial3D_jbgmh")
 metadata/_edit_group_ = true
@@ -159,11 +158,11 @@ _material = SubResource("StandardMaterial3D_jbgmh")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@566153" type="CollisionShape3D" parent="Platform3"]
+[node name="@CollisionShape3D@636830" type="CollisionShape3D" parent="Platform3"]
 shape = SubResource("BoxShape3D_gd7ed")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@566154" type="MeshInstance3D" parent="Platform3"]
+[node name="@MeshInstance3D@636831" type="MeshInstance3D" parent="Platform3"]
 mesh = SubResource("BoxMesh_8pdse")
 surface_material_override/0 = SubResource("StandardMaterial3D_jbgmh")
 metadata/_edit_group_ = true
@@ -176,11 +175,11 @@ _material = SubResource("StandardMaterial3D_jbgmh")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@566155" type="CollisionShape3D" parent="Platform4"]
+[node name="@CollisionShape3D@636832" type="CollisionShape3D" parent="Platform4"]
 shape = SubResource("BoxShape3D_dmjyr")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@566156" type="MeshInstance3D" parent="Platform4"]
+[node name="@MeshInstance3D@636833" type="MeshInstance3D" parent="Platform4"]
 mesh = SubResource("BoxMesh_u7kf2")
 surface_material_override/0 = SubResource("StandardMaterial3D_jbgmh")
 metadata/_edit_group_ = true
@@ -193,11 +192,11 @@ _material = SubResource("StandardMaterial3D_jbgmh")
 metadata/_custom_type_script = "uid://x63uix0qg2ji"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@566157" type="CollisionShape3D" parent="Platform5"]
+[node name="@CollisionShape3D@636834" type="CollisionShape3D" parent="Platform5"]
 shape = SubResource("BoxShape3D_agd4d")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@566158" type="MeshInstance3D" parent="Platform5"]
+[node name="@MeshInstance3D@636835" type="MeshInstance3D" parent="Platform5"]
 mesh = SubResource("BoxMesh_fg8xg")
 surface_material_override/0 = SubResource("StandardMaterial3D_jbgmh")
 metadata/_edit_group_ = true
@@ -209,11 +208,11 @@ size = Vector3(1, 5, 5)
 metadata/_custom_type_script = "uid://shr7xp8kpc8l"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@566159" type="CollisionShape3D" parent="PlatformPortalable"]
+[node name="@CollisionShape3D@636836" type="CollisionShape3D" parent="PlatformPortalable"]
 shape = SubResource("BoxShape3D_yogbp")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@566160" type="MeshInstance3D" parent="PlatformPortalable"]
+[node name="@MeshInstance3D@636837" type="MeshInstance3D" parent="PlatformPortalable"]
 mesh = SubResource("BoxMesh_701es")
 metadata/_edit_group_ = true
 
@@ -224,26 +223,26 @@ size = Vector3(1, 5, 5)
 metadata/_custom_type_script = "uid://shr7xp8kpc8l"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@566161" type="CollisionShape3D" parent="PlatformPortalable3"]
+[node name="@CollisionShape3D@636838" type="CollisionShape3D" parent="PlatformPortalable3"]
 shape = SubResource("BoxShape3D_igv0p")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@566162" type="MeshInstance3D" parent="PlatformPortalable3"]
+[node name="@MeshInstance3D@636839" type="MeshInstance3D" parent="PlatformPortalable3"]
 mesh = SubResource("BoxMesh_eekbm")
 metadata/_edit_group_ = true
 
 [node name="PlatformPortalable4" type="StaticBody3D" parent="."]
-transform = Transform3D(-0.36225912, 0, -0.93207747, 0, 1, 0, 0.93207747, 0, -0.36225912, -4.5, 2.5, 4)
+transform = Transform3D(-0.362259, 0, -0.93207747, 0, 1, 0, 0.93207747, 0, -0.362259, -4.5, 2.5, 4)
 script = ExtResource("3_ps8jh")
 size = Vector3(5, 5, 5)
 metadata/_custom_type_script = "uid://shr7xp8kpc8l"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@566163" type="CollisionShape3D" parent="PlatformPortalable4"]
+[node name="@CollisionShape3D@636840" type="CollisionShape3D" parent="PlatformPortalable4"]
 shape = SubResource("BoxShape3D_8641d")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@566164" type="MeshInstance3D" parent="PlatformPortalable4"]
+[node name="@MeshInstance3D@636841" type="MeshInstance3D" parent="PlatformPortalable4"]
 mesh = SubResource("BoxMesh_igd68")
 metadata/_edit_group_ = true
 
@@ -254,11 +253,11 @@ size = Vector3(5, 5, 5)
 metadata/_custom_type_script = "uid://shr7xp8kpc8l"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@566165" type="CollisionShape3D" parent="PlatformPortalable8"]
+[node name="@CollisionShape3D@636842" type="CollisionShape3D" parent="PlatformPortalable8"]
 shape = SubResource("BoxShape3D_pallj")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@566166" type="MeshInstance3D" parent="PlatformPortalable8"]
+[node name="@MeshInstance3D@636843" type="MeshInstance3D" parent="PlatformPortalable8"]
 mesh = SubResource("BoxMesh_0d47q")
 metadata/_edit_group_ = true
 
@@ -269,11 +268,11 @@ size = Vector3(5, 1, 5)
 metadata/_custom_type_script = "uid://shr7xp8kpc8l"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@566167" type="CollisionShape3D" parent="PlatformPortalable5"]
+[node name="@CollisionShape3D@636844" type="CollisionShape3D" parent="PlatformPortalable5"]
 shape = SubResource("BoxShape3D_7xvkg")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@566168" type="MeshInstance3D" parent="PlatformPortalable5"]
+[node name="@MeshInstance3D@636845" type="MeshInstance3D" parent="PlatformPortalable5"]
 mesh = SubResource("BoxMesh_a2m5h")
 metadata/_edit_group_ = true
 
@@ -284,11 +283,11 @@ size = Vector3(2, 1, 5)
 metadata/_custom_type_script = "uid://shr7xp8kpc8l"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@566169" type="CollisionShape3D" parent="PlatformPortalable6"]
+[node name="@CollisionShape3D@636846" type="CollisionShape3D" parent="PlatformPortalable6"]
 shape = SubResource("BoxShape3D_abebg")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@566170" type="MeshInstance3D" parent="PlatformPortalable6"]
+[node name="@MeshInstance3D@636847" type="MeshInstance3D" parent="PlatformPortalable6"]
 mesh = SubResource("BoxMesh_87m2x")
 metadata/_edit_group_ = true
 
@@ -299,11 +298,11 @@ size = Vector3(5, 1, 2)
 metadata/_custom_type_script = "uid://shr7xp8kpc8l"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@566171" type="CollisionShape3D" parent="PlatformPortalable7"]
+[node name="@CollisionShape3D@636848" type="CollisionShape3D" parent="PlatformPortalable7"]
 shape = SubResource("BoxShape3D_vthnv")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@566172" type="MeshInstance3D" parent="PlatformPortalable7"]
+[node name="@MeshInstance3D@636849" type="MeshInstance3D" parent="PlatformPortalable7"]
 mesh = SubResource("BoxMesh_wan6f")
 metadata/_edit_group_ = true
 
@@ -314,10 +313,10 @@ size = Vector3(1, 5, 5)
 metadata/_custom_type_script = "uid://shr7xp8kpc8l"
 metadata/_edit_group_ = true
 
-[node name="@CollisionShape3D@566173" type="CollisionShape3D" parent="PlatformPortalable2"]
+[node name="@CollisionShape3D@636850" type="CollisionShape3D" parent="PlatformPortalable2"]
 shape = SubResource("BoxShape3D_f12un")
 metadata/_edit_group_ = true
 
-[node name="@MeshInstance3D@566174" type="MeshInstance3D" parent="PlatformPortalable2"]
+[node name="@MeshInstance3D@636851" type="MeshInstance3D" parent="PlatformPortalable2"]
 mesh = SubResource("BoxMesh_mgbfy")
 metadata/_edit_group_ = true

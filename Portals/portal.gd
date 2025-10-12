@@ -70,6 +70,10 @@ func _process(delta: float) -> void:
 			
 		var collider_on := inner_detector.get_overlapping_bodies() and not outer_detector.get_overlapping_bodies()
 		if player_detector.get_overlapping_bodies().has(player):
+			inner_collider.set_collision_layer_value(2, collider_on)
+			inner_collider.set_collision_mask_value(2, collider_on)
+			other_portal.inner_collider.set_collision_layer_value(2, collider_on)
+			other_portal.inner_collider.set_collision_mask_value(2, collider_on)
 			player.set_collision_layer_value(1, not collider_on)
 			player.set_collision_mask_value(1, not collider_on)
 			var pl := Plane(global_basis.z, global_position)
@@ -80,3 +84,5 @@ func _process(delta: float) -> void:
 func teleport_player(player: Player, other_portal: Portal) -> void:
 	player.global_transform = other_portal.virtual_transform.global_transform\
 	* virtual_transform.global_transform.inverse() * player.global_transform
+	player.velocity = other_portal.virtual_transform.global_basis\
+	* virtual_transform.global_basis.inverse() * player.velocity
