@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://br44jtuw7yjcj"]
+
+[ext_resource type="Script" uid="uid://cbgrvb16qgtxd" path="res://WaterRace/boat.gd" id="1_5xh61"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ta7p8"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5xh61"]
+
+[node name="Boat" type="CharacterBody3D"]
+script = ExtResource("1_5xh61")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ta7p8")
+
+[node name="HeightDetector" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+target_position = Vector3(0, -20, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_5xh61")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.195041, 6.0641227)

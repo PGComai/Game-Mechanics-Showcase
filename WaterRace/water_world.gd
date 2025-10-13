@@ -5,12 +5,23 @@ extends Node3D
 @export var passive_noise: FastNoiseLite
 @export var movement_speed: float = 5.0
 @export var passive_strength: float = 1.0
+@export var dimensions := Vector2i(64, 64):
+	set(value):
+		dimensions = value
+		if hmap:
+			hmap.map_width = dimensions.x
+			hmap.map_depth = dimensions.y
+		if image:
+			image = Image.create(dimensions.x, dimensions.y, false, Image.FORMAT_RH)
+		if water_mesh_plane:
+			water_mesh_plane.size = dimensions
 
 
 var hmap: HeightMapShape3D
 var movement := Vector2.ZERO
 var image: Image
 var water_mat: ShaderMaterial
+var water_mesh_plane: PlaneMesh
 
 
 @onready var water_surface: StaticBody3D = $WaterSurface
@@ -20,8 +31,9 @@ var water_mat: ShaderMaterial
 
 func _ready() -> void:
 	hmap = collision_shape_3d.shape
-	image = Image.create(64, 64, false, Image.FORMAT_RH)
+	image = Image.create(dimensions.x, dimensions.y, false, Image.FORMAT_RH)
 	water_mat = water_mesh.material_override
+	water_mesh_plane = water_mesh.mesh
 
 
 func _physics_process(delta: float) -> void:
@@ -64,7 +76,8 @@ func make_heightmap() -> void:
 			map_data.append(result)
 			image.set_pixel(x_division, z_division, clr)
 	
-	hmap.update_map_data_from_image(image, 0.0, 5.0)
+	hmap.update_map_data_from_image(image, 0.0, passive_strength)
 	#var color_image: Image = image.duplicate()
 	#color_image.convert(Image.FORMAT_RGB8)
 	water_mat.set_shader_parameter("WaterMap", ImageTexture.create_from_image(image))
+	water_mat.set_shader_parameter("Strength", passive_strength)
