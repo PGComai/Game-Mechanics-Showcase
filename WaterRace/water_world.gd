@@ -1,9 +1,11 @@
+@tool
 extends Node3D
 
 
 const WAVE_CONSTANT: float = 75.0
 const WAVE_DAMP: float = 0.997
 const BOAT_DISP_STRENGTH: float = 7.0
+const WALL_OFFSET: float = 5.0
 
 
 @export var passive_noise: FastNoiseLite
@@ -35,9 +37,17 @@ var wave_disps: PackedFloat64Array = []
 @onready var water_surface: StaticBody3D = $WaterSurface
 @onready var collision_shape_3d: CollisionShape3D = $WaterSurface/CollisionShape3D
 @onready var water_mesh: MeshInstance3D = $WaterSurface/WaterMesh
+@onready var wall_zm: CollisionShape3D = $Walls/WallZM
+@onready var wall_zp: CollisionShape3D = $Walls/WallZP
+@onready var wall_xm: CollisionShape3D = $Walls/WallXM
+@onready var wall_xp: CollisionShape3D = $Walls/WallXP
 
 
 func _ready() -> void:
+	wall_xm.position.x = (-dimensions.x / 2.0) - WALL_OFFSET
+	wall_xp.position.x = (dimensions.x / 2.0) + WALL_OFFSET
+	wall_zm.position.z = (-dimensions.y / 2.0) - WALL_OFFSET
+	wall_zp.position.z = (dimensions.y / 2.0) + WALL_OFFSET
 	hmap = collision_shape_3d.shape
 	image = Image.create(dimensions.x, dimensions.y, false, Image.FORMAT_RH)
 	wave_speeds.resize(dimensions.x * dimensions.y)
@@ -56,8 +66,9 @@ func _ready() -> void:
 	if water_mesh_plane:
 		water_mesh_plane.size = dimensions
 	
-	for boat in boats:
-		boat.boat_under_water.connect(_on_boat_under_water)
+	if not Engine.is_editor_hint():
+		for boat in boats:
+			boat.boat_under_water.connect(_on_boat_under_water)
 
 
 func _physics_process(delta: float) -> void:
@@ -152,7 +163,7 @@ func _on_boat_under_water(depth: float, pos: Vector2) -> void:
 	var strength: float = clampf(depth * BOAT_DISP_STRENGTH, 0.0, BOAT_DISP_STRENGTH)
 	
 	#wave_disps[idx] -= strength
-	wave_disps[idx] = lerpf(wave_disps[idx], -strength, 0.5)
+	wave_disps[idx] = lerpf(wave_disps[idx], -strength, 0.3)
 	#wave_disps[idx] *= 0.9
 	
 	for x in [-1.0, 1.0]:
@@ -167,5 +178,5 @@ func _on_boat_under_water(depth: float, pos: Vector2) -> void:
 				strength = clampf(depth * BOAT_DISP_STRENGTH, 0.0, BOAT_DISP_STRENGTH) * 0.5
 				
 				#wave_disps[idx] -= strength
-				wave_disps[idx] = lerpf(wave_disps[idx], -strength, 0.5)
+				wave_disps[idx] = lerpf(wave_disps[idx], -strength, 0.3)
 				#wave_disps[idx] *= 0.9

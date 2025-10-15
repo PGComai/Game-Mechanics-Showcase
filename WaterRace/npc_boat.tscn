@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccdv3edyjgmqu"]
 
-[ext_resource type="Script" uid="uid://dycr60gjvdi16" path="res://npc_boat.gd" id="1_hdfup"]
+[ext_resource type="Script" uid="uid://dycr60gjvdi16" path="res://WaterRace/npc_boat.gd" id="1_hdfup"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_os4vr"]
 size = Vector3(1, 0.5, 2)

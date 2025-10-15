@@ -11,5 +11,10 @@ var current_scene: Node
 
 
 func _ready() -> void:
-	current_scene = default_scene.instantiate()
-	sub_viewport.add_child(current_scene)
+	sub_viewport.size = Vector2i(
+		ProjectSettings.get_setting("display/window/size/viewport_width"),
+		ProjectSettings.get_setting("display/window/size/viewport_height")
+	)
+	if default_scene:
+		current_scene = default_scene.instantiate()
+		sub_viewport.add_child(current_scene)

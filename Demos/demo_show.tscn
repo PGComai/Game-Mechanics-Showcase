@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://tdqvrqgt343p"]
+
+[ext_resource type="Script" uid="uid://cvqdw3l86axw2" path="res://Demos/demo_show.gd" id="1_exdwm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_exdwm"]
+font_size = 24
+
+[node name="DemoShow" type="PanelContainer"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.5
+offset_right = 44.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_exdwm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="IconButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+icon_alignment = 1
+expand_icon = true
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelTitle" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Title"
+label_settings = SubResource("LabelSettings_exdwm")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LabelDescription" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Description"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/IconButton" to="." method="_on_icon_button_pressed"]

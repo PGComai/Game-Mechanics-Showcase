@@ -1,7 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1p1ycf2cb1ww"]
+[gd_scene load_steps=8 format=3 uid="uid://d1p1ycf2cb1ww"]
 
 [ext_resource type="Script" uid="uid://dvxwbaw1fuf0m" path="res://main.gd" id="1_glv2v"]
-[ext_resource type="PackedScene" uid="uid://cgnimbnlr3no6" path="res://WaterRace/water_world.tscn" id="2_uu6xs"]
+[ext_resource type="PackedScene" uid="uid://tdqvrqgt343p" path="res://Demos/demo_show.tscn" id="3_cm0pq"]
+[ext_resource type="Resource" uid="uid://c4x6c0jd50rkb" path="res://Demos/demo_portals.tres" id="4_3dxm6"]
+[ext_resource type="Resource" uid="uid://b6ach6t8rwb50" path="res://Demos/demo_fps.tres" id="4_fos0i"]
+[ext_resource type="Resource" uid="uid://pvxo72cv40oa" path="res://Demos/demo_waves.tres" id="5_lgr22"]
+
+[sub_resource type="Theme" id="Theme_r0du0"]
+MarginContainer/constants/margin_bottom = 16
+MarginContainer/constants/margin_left = 16
+MarginContainer/constants/margin_right = 16
+MarginContainer/constants/margin_top = 16
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rxg2q"]
 viewport_path = NodePath("TextureRect/SubViewport")
@@ -13,8 +22,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_r0du0")
 script = ExtResource("1_glv2v")
-default_scene = ExtResource("2_uu6xs")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -29,7 +38,6 @@ texture = SubResource("ViewportTexture_rxg2q")
 size = Vector2i(1920, 1080)
 
 [node name="Demos" type="PanelContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,9 +48,33 @@ grow_vertical = 2
 [node name="MarginContainer" type="MarginContainer" parent="Demos"]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Demos/MarginContainer"]
+[node name="HBoxContainerPages" type="HBoxContainer" parent="Demos/MarginContainer"]
 layout_mode = 2
+alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="Demos/MarginContainer/ScrollContainer"]
+[node name="ButtonPageLeft" type="Button" parent="Demos/MarginContainer/HBoxContainerPages"]
 layout_mode = 2
-columns = 5
+size_flags_horizontal = 0
+text = "<"
+
+[node name="HBoxContainerDemos" type="HBoxContainer" parent="Demos/MarginContainer/HBoxContainerPages"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="DemoShow" parent="Demos/MarginContainer/HBoxContainerPages/HBoxContainerDemos" instance=ExtResource("3_cm0pq")]
+layout_mode = 2
+demo = ExtResource("4_fos0i")
+
+[node name="DemoShow2" parent="Demos/MarginContainer/HBoxContainerPages/HBoxContainerDemos" instance=ExtResource("3_cm0pq")]
+layout_mode = 2
+demo = ExtResource("4_3dxm6")
+
+[node name="DemoShow3" parent="Demos/MarginContainer/HBoxContainerPages/HBoxContainerDemos" instance=ExtResource("3_cm0pq")]
+layout_mode = 2
+demo = ExtResource("5_lgr22")
+
+[node name="ButtonPageRight" type="Button" parent="Demos/MarginContainer/HBoxContainerPages"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = ">"

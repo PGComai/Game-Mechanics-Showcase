@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://du1dqgn57a0gr"]
 
-[ext_resource type="Script" uid="uid://b4waftf0q3eal" path="res://player_boat.gd" id="1_my4ey"]
+[ext_resource type="Script" uid="uid://b4waftf0q3eal" path="res://WaterRace/player_boat.gd" id="1_my4ey"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_my4ey"]
 albedo_color = Color(0.4890839, 0.2177395, 0.16525006, 1)
