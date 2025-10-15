@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccdv3edyjgmqu"]
+
+[ext_resource type="Script" uid="uid://dycr60gjvdi16" path="res://npc_boat.gd" id="1_hdfup"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_os4vr"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="PrismMesh" id="PrismMesh_hdfup"]
+size = Vector3(1, 1, 0.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r2t25"]
+
+[node name="NPCBoat" type="CharacterBody3D"]
+script = ExtResource("1_hdfup")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11518097, 0)
+mesh = SubResource("BoxMesh_os4vr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-1, 8.742278e-08, -3.821371e-15, 0, -4.371139e-08, -1, -8.742278e-08, -1, 4.371139e-08, 0, 0, -1.5)
+mesh = SubResource("PrismMesh_hdfup")
+
+[node name="HeightDetector" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+target_position = Vector3(0, -20, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_r2t25")
+
+[node name="WaveDisplacer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)

@@ -11,6 +11,7 @@ size = Vector3(1, 0.5, 2)
 script = ExtResource("1_5xh61")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11518097, 0)
 mesh = SubResource("BoxMesh_ta7p8")
 
 [node name="HeightDetector" type="RayCast3D" parent="."]
@@ -23,3 +24,6 @@ shape = SubResource("SphereShape3D_5xh61")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.195041, 6.0641227)
+
+[node name="WaveDisplacer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)

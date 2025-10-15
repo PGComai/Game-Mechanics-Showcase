@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://du1dqgn57a0gr"]
+
+[ext_resource type="Script" uid="uid://b4waftf0q3eal" path="res://player_boat.gd" id="1_my4ey"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_my4ey"]
+albedo_color = Color(0.4890839, 0.2177395, 0.16525006, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_my4ey"]
+size = Vector3(1, 0.5, 2)
+
+[sub_resource type="PrismMesh" id="PrismMesh_my4ey"]
+size = Vector3(1, 1, 0.5)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ygaws"]
+
+[node name="PlayerBoat" type="CharacterBody3D"]
+script = ExtResource("1_my4ey")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11518097, 0)
+material_override = SubResource("StandardMaterial3D_my4ey")
+mesh = SubResource("BoxMesh_my4ey")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-1, 8.742278e-08, -3.821371e-15, 0, -4.371139e-08, -1, -8.742278e-08, -1, 4.371139e-08, 0, 0, -1.5)
+material_override = SubResource("StandardMaterial3D_my4ey")
+mesh = SubResource("PrismMesh_my4ey")
+
+[node name="HeightDetector" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+target_position = Vector3(0, -20, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ygaws")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7683716e-07, 1.6838214, 4.0837607)
+
+[node name="WaveDisplacer" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
