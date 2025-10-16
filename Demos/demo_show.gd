@@ -1,7 +1,9 @@
 extends PanelContainer
+class_name DemoShow
 
 
-signal picked(scene: PackedScene)
+signal picked(_demo: Demo)
+signal focused(demo_show: DemoShow)
 
 
 @export var demo: Demo
@@ -17,7 +19,15 @@ func _ready() -> void:
 		icon_button.icon = demo.thumbnail
 		label_title.text = demo.title
 		label_description.text = demo.description
+	else:
+		label_title.text = ""
+		label_description.text = ""
 
 
 func _on_icon_button_pressed() -> void:
-	picked.emit(demo.scene)
+	if demo:
+		picked.emit(demo)
+
+
+func _on_icon_button_focus_entered() -> void:
+	focused.emit(self)

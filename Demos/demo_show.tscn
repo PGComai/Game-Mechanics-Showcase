@@ -6,24 +6,19 @@
 font_size = 24
 
 [node name="DemoShow" type="PanelContainer"]
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -44.5
-offset_right = 44.5
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 3
 script = ExtResource("1_exdwm")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 alignment = 1
 
 [node name="IconButton" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -46,8 +41,11 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="LabelDescription" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 300)
 layout_mode = 2
 size_flags_vertical = 2
 text = "Description"
+autowrap_mode = 3
 
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/IconButton" to="." method="_on_icon_button_focus_entered"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/IconButton" to="." method="_on_icon_button_pressed"]

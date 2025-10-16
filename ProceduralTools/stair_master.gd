@@ -65,6 +65,7 @@ func make_stairs():
 		new_mm.set_instance_transform(i, Transform3D(Basis.IDENTITY, step_pos))
 	
 	if smooth:
+		add_to_group("nav")
 		var new_ramp := CollisionShape3D.new()
 		var new_shape := ConvexPolygonShape3D.new()
 		var float_steps: float = float(num_steps)
@@ -100,4 +101,3 @@ func make_stairs():
 	new_mmi.multimesh = new_mm
 	add_child(new_mmi)
 	new_mmi.owner = get_tree().edited_scene_root
-	add_to_group("nav")

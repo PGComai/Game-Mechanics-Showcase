@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://b5d5qn373ido2"]
+
+[ext_resource type="PackedScene" uid="uid://6nttfq8w3f5a" path="res://FPS/player.tscn" id="1_w0ks5"]
+[ext_resource type="Script" uid="uid://x63uix0qg2ji" path="res://ProceduralTools/platform.gd" id="2_mk72v"]
+[ext_resource type="Script" uid="uid://c8gkli7gvppk7" path="res://LevelEditor/free_cam.gd" id="3_kymfk"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mk72v"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_kymfk"]
+sky_material = SubResource("ProceduralSkyMaterial_mk72v")
+
+[sub_resource type="Environment" id="Environment_hdaxf"]
+background_mode = 2
+sky = SubResource("Sky_kymfk")
+tonemap_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_isvcc"]
+offsets = PackedFloat32Array(0.9423077, 0.9692308)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1qv2m"]
+gradient = SubResource("Gradient_isvcc")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_isvcc"]
+albedo_color = Color(0.2285108, 0.22851083, 0.22851074, 1)
+albedo_texture = SubResource("GradientTexture2D_1qv2m")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kymfk"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hdaxf"]
+size = Vector3(20, 1, 20)
+
+[node name="EditorWorld" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hdaxf")
+
+[node name="Player" parent="." instance=ExtResource("1_w0ks5")]
+
+[node name="Platform" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+script = ExtResource("2_mk72v")
+_material = SubResource("StandardMaterial3D_isvcc")
+metadata/_custom_type_script = "uid://x63uix0qg2ji"
+metadata/_edit_group_ = true
+
+[node name="@CollisionShape3D@179383" type="CollisionShape3D" parent="Platform"]
+shape = SubResource("BoxShape3D_kymfk")
+metadata/_edit_group_ = true
+
+[node name="@MeshInstance3D@179384" type="MeshInstance3D" parent="Platform"]
+mesh = SubResource("BoxMesh_hdaxf")
+surface_material_override/0 = SubResource("StandardMaterial3D_isvcc")
+metadata/_edit_group_ = true
+
+[node name="FreeCamH" type="Node3D" parent="."]
+script = ExtResource("3_kymfk")
+
+[node name="FreeCamV" type="Node3D" parent="FreeCamH"]
+
+[node name="FreeCam" type="Camera3D" parent="FreeCamH/FreeCamV"]
